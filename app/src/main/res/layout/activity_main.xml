@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.study.longl.myselfviewdemo.MainActivity">
+
+    <!--跳转MyRecyclerView-->
+    <Button
+    android:id="@+id/bt_my_recycler_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="MyRecyclerView" />
+
+    <!--聚焦动画控件-->
+    <!--<com.study.longl.myselfviewdemo.Views.FocusView-->
+    <!--android:id="@+id/fv_my"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp" />-->
+
+    <!--波浪扩散控件-->
+    <!--<com.study.longl.myselfviewdemo.Views.MyWaveView-->
+    <!--android:id="@+id/wv_my_test"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--app:newWaveSpeed="750"-->
+    <!--app:oneWaveDuration="5000"-->
+    <!--app:textContent="进行中..."-->
+    <!--app:waveColor="@color/colorPrimaryDark" />-->
+
+    <!--小黑点密码输入-->
+    <!--<com.study.longl.myselfviewdemo.Views.PayPasswordView-->
+    <!--android:id="@+id/ppv_my"-->
+    <!--android:layout_width="300dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="15dp" />-->
+
+    <!--聊天页图片展示-->
+    <!--<com.study.longl.myselfviewdemo.Views.MyIMImageView-->
+        <!--android:id="@+id/miv_test"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:paddingStart="10dp"-->
+        <!--android:paddingTop="20dp"-->
+        <!--android:src="@drawable/ic_launcher_background"-->
+        <!--app:direction="right"-->
+        <!--app:showShadow="false"-->
+        <!--app:showText="false" />-->
+
+</RelativeLayout>
