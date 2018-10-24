@@ -240,10 +240,13 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
 
         Matrix mShaderMatrix = new Matrix();
         mShaderMatrix.set(null);
+        Log.i(TAG, "mBitmapRect" + mBitmapRectF);
+        Log.i(TAG, "bitmap " + mBitmapWidth + " " + mBitmapHeight);
         scaleY = (mBitmapRectF.bottom - mBitmapRectF.top) / mBitmapHeight;
         dy = mBitmapRectF.top;
         scaleX = (mBitmapRectF.right - mBitmapRectF.left) / mBitmapWidth;
         dx = mBitmapRectF.left;
+        Log.i(TAG, "scaleX: " + scaleX + " scaleY: " + scaleY);
         mShaderMatrix.setScale(scaleX, scaleY);
         mShaderMatrix.postTranslate(dx, dy);
         mBitmapShader.setLocalMatrix(mShaderMatrix);

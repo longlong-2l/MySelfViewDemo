@@ -19,14 +19,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.bt_my_recycler_view).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MyRecyclerViewActivity.class));
-            }
-        });
 
-        //对焦控件代码
+        /*侧滑RecyclerView*/
+//        findViewById(R.id.bt_my_recycler_view).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, MyRecyclerViewActivity.class));
+//            }
+//        });
+        /*对焦控件代码*/
 //        mFocusView = findViewById(R.id.fv_my);
 //        RelativeLayout ll_root = findViewById(R.id.ll_root);
 //        ll_root.setOnTouchListener(new View.OnTouchListener() {
@@ -44,12 +45,10 @@ public class MainActivity extends AppCompatActivity {
 //                return false;
 //            }
 //        });
-
-        //水波纹扩散控件
+        /*水波纹扩散控件*/
 //        MyWaveView myWaveView = findViewById(R.id.wv_my_test);
 //        myWaveView.start();
-
-        //密码输入控件
+        /*密码输入控件*/
 //        PayPasswordView mPayPasswordView = findViewById(R.id.ppv_my);
 //        mPayPasswordView.requestFocus();
 //        mPayPasswordView.addTextChangedListener(new TextWatcher() {
@@ -68,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
-
-        //聊天页图片展示
+        /*聊天页图片展示*/
 //        MyIMImageView myIMImageView = findViewById(R.id.miv_test);
 //        myIMImageView.start();
     }
