@@ -1,5 +1,5 @@
 # MySelfViewDemo
-Android常见自定义View的集合，从简单到复杂，注释详细，持续更新，不用为了单一功能效果而去引入一个复杂三方库，适合自定义view学习者。
+Android常见自定义View的集合，从简单到复杂，注释详细，持续更新，不用为了单一功能效果而去引入一个复杂三方库，适合自定义view学习者。自定义View的学习本人认为只有实践一种，光看别人的博客和源码不行，有的太复杂还没注释，可以从简单的Demo照着敲入门，了解常用的API及效果和大体思路，慢慢就会成长。
 图例：
 
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E4%BE%A7%E6%BB%91%E6%95%88%E6%9E%9C_208.png)
