@@ -11,6 +11,7 @@ import com.study.longl.myselfviewdemo.Views.MyFocusView;
 import com.study.longl.myselfviewdemo.Views.MyIMImageView;
 import com.study.longl.myselfviewdemo.Views.MyWaveView;
 import com.study.longl.myselfviewdemo.Views.PayPasswordView;
+import com.study.longl.myselfviewdemo.Views.WaterWaveView;
 
 public class MainActivity extends AppCompatActivity {
     private MyFocusView mFocusView;
@@ -70,5 +71,8 @@ public class MainActivity extends AppCompatActivity {
         /*聊天页图片展示*/
 //        MyIMImageView myIMImageView = findViewById(R.id.miv_test);
 //        myIMImageView.start();
+
+        WaterWaveView waterWaveView = findViewById(R.id.wwv_test);
+        waterWaveView.start();
     }
 }

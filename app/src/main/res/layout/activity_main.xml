@@ -52,29 +52,34 @@
     <!--app:showShadow="true"-->
     <!--app:showText="true" />-->
 
-    <com.study.longl.myselfviewdemo.Views.CircleImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/image1"
-        app:isColorImage="false"
-        app:isNormalImage="true"
-        app:isText="false" />
+    <!--<com.study.longl.myselfviewdemo.Views.CircleImageView-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:src="@drawable/image1"-->
+        <!--app:isColorImage="false"-->
+        <!--app:isNormalImage="true"-->
+        <!--app:isText="false" />-->
 
-    <com.study.longl.myselfviewdemo.Views.CircleImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/image1"
-        app:fillColor="@color/colorAccent"
-        app:isColorImage="true"
-        app:isNormalImage="false"
-        app:isText="true"
-        app:textContent2="李" />
+    <!--<com.study.longl.myselfviewdemo.Views.CircleImageView-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:src="@drawable/image1"-->
+        <!--app:fillColor="@color/colorAccent"-->
+        <!--app:isColorImage="true"-->
+        <!--app:isNormalImage="false"-->
+        <!--app:isText="true"-->
+        <!--app:textContent2="李" />-->
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/image1" />
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:src="@drawable/image1" />-->
+
+    <com.study.longl.myselfviewdemo.Views.WaterWaveView
+        android:id="@+id/wwv_test"
+        android:layout_width="200dp"
+        android:layout_height="400dp"/>
 
 </RelativeLayout>
