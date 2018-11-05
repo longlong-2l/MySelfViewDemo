@@ -1,17 +1,38 @@
 package com.study.longl.myselfviewdemo;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.SystemClock;
+import android.provider.Settings;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
 
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
 import com.study.longl.myselfviewdemo.Views.MyIMImageView;
 import com.study.longl.myselfviewdemo.Views.MyWaveView;
 import com.study.longl.myselfviewdemo.Views.PayPasswordView;
 import com.study.longl.myselfviewdemo.Views.WaterWaveView;
+import com.study.longl.myselfviewdemo.utils.StatusBarUtil;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private MyFocusView mFocusView;
@@ -19,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtil.setStatusColor(MainActivity.this,false, true, R.color.default_color_three);
         setContentView(R.layout.activity_main);
 
         /*侧滑RecyclerView*/
@@ -71,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
         /*聊天页图片展示*/
 //        MyIMImageView myIMImageView = findViewById(R.id.miv_test);
 //        myIMImageView.start();
-
-        WaterWaveView waterWaveView = findViewById(R.id.wwv_test);
-        waterWaveView.start();
+        /*水波纹加载进度展示*/
+//        WaterWaveView waterWaveView = findViewById(R.id.wwv_test);
+//        waterWaveView.start();
     }
 }
