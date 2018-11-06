@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setStatusColor(MainActivity.this,false, true, R.color.default_color_three);
+        StatusBarUtil.setStatusColor(MainActivity.this,false, false, R.color.default_color_one);
         setContentView(R.layout.activity_main);
 
         /*侧滑RecyclerView*/

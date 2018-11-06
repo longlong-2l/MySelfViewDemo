@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="gift_bg_color">#27CA8C</color>
+    <color name="white">#ffffffff</color>
     <color name="default_color_one">#7CCD2C</color>
     <color name="default_color_two">#14C4E3</color>
     <color name="default_color_three">#FD6040</color>

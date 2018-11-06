@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 
 public class StatusBarUtil {
     private static final String KEY_VERSION_OPPO = "ro.build.version.opporom";
+    private static final String KEY_VERSION_MIUI = "ro.miui.ui.version.name";
 
     /**
      * 设置状态栏透明度、背景颜色、文字颜色
@@ -71,7 +72,7 @@ public class StatusBarUtil {
         try {
             Class<?> cla = Class.forName("android.os.SystemProperties");
             Method mtd = cla.getMethod("get", String.class);
-            String val = (String) mtd.invoke(null, KEY_VERSION_OPPO);
+            String val = (String) mtd.invoke(null, KEY_VERSION_MIUI);
             val = val.replaceAll("[vV]", "");
             int version = Integer.parseInt(val);
             return version >= 6;
@@ -130,7 +131,7 @@ public class StatusBarUtil {
             val = val.replaceAll("[vV]", "");
             val = val.substring(0, 1);
             int version = Integer.parseInt(val);
-            return version == 3;
+            return version >= 3;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -184,7 +185,7 @@ public class StatusBarUtil {
      * 如果只是设置状态栏透明，就使用这个就好了
      */
     public static void setStatusTranslate(Activity activity) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View decorView = activity.getWindow().getDecorView();
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -199,7 +200,7 @@ public class StatusBarUtil {
      * @param color 颜色值
      */
     public static void setStatusBarColor(Activity activity, int color) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().setStatusBarColor(activity.getResources().getColor(color));
         }
     }
