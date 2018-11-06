@@ -8,76 +8,49 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by longl on 2018/11/5.
- *
+ * AutoScrollViewAdapter 自定义轮播图的Adapter
  */
 
-public class AutoScrollViewAdapter<T> extends PagerAdapter implements ViewPager.OnPageChangeListener {
+public class AutoScrollViewAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
+    private ArrayList<ImageView> arrayList = new ArrayList<>();
 
-    private List<T> data = new ArrayList<>();
-
-    private Context mContext;
-    private AutoScrollView mView;
-
-    private OnAutoViewPagerItemClickListener listener;
-
-    public AutoScrollViewAdapter(Context context, List<T> data) {
-        this.mContext = context;
-        this.data = data;
-    }
-
-    public AutoScrollViewAdapter(Context context, List<T> data,OnAutoViewPagerItemClickListener listener) {
-        this.mContext = context;
-        this.data = data;
-        this.listener = listener;
-    }
-
-    public void init(AutoScrollView viewPager,AutoScrollViewAdapter adapter){
-        mView = viewPager;
-        mView.setAdapter(this);
-        mView.addOnPageChangeListener(this);
-
-        if (data == null || data.size() == 0){
-            return;
+    public AutoScrollViewAdapter(Context context, int imgs[]) {
+        for (int img : imgs) {
+            ImageView imageView = new ImageView(context);
+            imageView.setImageResource(img);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            arrayList.add(imageView);
         }
-        //设置初始为中间，这样一开始就能够往左滑动了
-        int position = Integer.MAX_VALUE/2 - (Integer.MAX_VALUE/2) % getRealCount();
-        mView.setCurrentItem(position);
-
-        mView.start();
-        mView.updatePointView(getRealCount());
-    }
-
-    public void setListener(OnAutoViewPagerItemClickListener listener) {
-        this.listener = listener;
-    }
-
-    public void add(T t){
-        data.add(t);
-        notifyDataSetChanged();
-        mView.updatePointView(getRealCount());
     }
 
     @Override
     public int getCount() {
-        return 0;
-    }
-
-    public int getRealCount(){
-        return data == null ? 0 : data.size();
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((ImageView) object);
+        return arrayList.size();
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return false;
+        return view == object;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        container.addView(arrayList.get(position));
+        arrayList.get(position).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //添加点击事件
+            }
+        });
+        return arrayList.get(position);
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+       container.removeView(arrayList.remove(position));
     }
 
     @Override
@@ -93,9 +66,5 @@ public class AutoScrollViewAdapter<T> extends PagerAdapter implements ViewPager.
     @Override
     public void onPageScrollStateChanged(int state) {
 
-    }
-
-    public interface OnAutoViewPagerItemClickListener<T> {
-        void onItemClick(int position,T t);
     }
 }

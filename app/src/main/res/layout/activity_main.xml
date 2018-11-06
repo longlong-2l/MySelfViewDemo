@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.study.longl.myselfviewdemo.MainActivity">
+    android:layout_height="match_parent">
 
     <!--跳转MyRecyclerView-->
     <!--<Button-->
@@ -72,12 +70,12 @@
     <!--app:textContent2="李" />-->
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/image3" />
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/image3" />-->
 
     <!--<com.study.longl.myselfviewdemo.Views.WaterWaveView-->
     <!--android:id="@+id/wwv_test"-->
@@ -85,5 +83,10 @@
     <!--android:layout_height="400dp"-->
     <!--android:layout_alignParentStart="true"-->
     <!--android:layout_alignParentTop="true" />-->
+
+    <com.study.longl.myselfviewdemo.AutoScrollView.AutoScrollViewPager
+        android:id="@+id/asv_test"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
 
 </RelativeLayout>
