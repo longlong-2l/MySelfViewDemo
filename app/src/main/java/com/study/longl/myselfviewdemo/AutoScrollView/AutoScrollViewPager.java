@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 /**
@@ -12,14 +13,17 @@ import android.view.MotionEvent;
  */
 
 public class AutoScrollViewPager extends ViewPager {
+    private static final String TAG = "AutoScrollViewPager";
     private boolean isStart;
+    private int currentItem = 0;
 
     public AutoScrollViewPager(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public AutoScrollViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+        addOnPageChangeListener(pageChangeListener);
     }
 
     @Override
@@ -31,13 +35,9 @@ public class AutoScrollViewPager extends ViewPager {
         @Override
         public void run() {
             if (isStart) {
-                int position = getCurrentItem();
-                if (position >= getAdapter().getCount() - 1) {
-                    setCurrentItem(0);
-                } else {
-                    setCurrentItem(position + 1);
-                }
-                postDelayed(mRunnable, 1000);
+                currentItem = currentItem % (getAdapter().getCount() - 2 + 1)+1;
+                setCurrentItem(currentItem);
+                postDelayed(mRunnable, 2000);
             }
         }
     };
@@ -69,4 +69,29 @@ public class AutoScrollViewPager extends ViewPager {
     public void stop() {
         isStart = false;
     }
+
+    private OnPageChangeListener pageChangeListener = new OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            Log.i(TAG, "onPageScrolled: ");
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            switch (state) {
+                case ViewPager.SCROLL_STATE_IDLE:
+                    // “偷梁换柱”
+                    if (getCurrentItem() == getAdapter().getCount() - 2 + 1) {
+                        setCurrentItem(1, false);
+                    }
+                    currentItem = getCurrentItem();
+                    break;
+            }
+        }
+    };
 }

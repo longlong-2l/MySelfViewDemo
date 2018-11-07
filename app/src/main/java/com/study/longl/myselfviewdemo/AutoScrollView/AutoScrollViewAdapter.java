@@ -2,7 +2,6 @@ package com.study.longl.myselfviewdemo.AutoScrollView;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,21 +13,27 @@ import java.util.ArrayList;
  * AutoScrollViewAdapter 自定义轮播图的Adapter
  */
 
-public class AutoScrollViewAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
+public class AutoScrollViewAdapter extends PagerAdapter {
     private ArrayList<ImageView> arrayList = new ArrayList<>();
 
     public AutoScrollViewAdapter(Context context, int imgs[]) {
-        for (int img : imgs) {
+        for (int i = 0; i < imgs.length + 2; i++) {
             ImageView imageView = new ImageView(context);
-            imageView.setImageResource(img);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            if (i == 0) {
+                imageView.setImageResource(imgs[imgs.length - 1]);
+            } else if (i == imgs.length + 1) {
+                imageView.setImageResource(imgs[0]);
+            } else {
+                imageView.setImageResource(imgs[i - 1]);
+            }
             arrayList.add(imageView);
         }
     }
 
     @Override
     public int getCount() {
-        return arrayList.size();
+        return arrayList == null ? 0 : arrayList.size();
     }
 
     @Override
@@ -39,32 +44,17 @@ public class AutoScrollViewAdapter extends PagerAdapter implements ViewPager.OnP
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         container.addView(arrayList.get(position));
-        arrayList.get(position).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              //添加点击事件
-            }
-        });
+//        arrayList.get(position).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //添加点击事件
+//            }
+//        });
         return arrayList.get(position);
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-       container.removeView(arrayList.remove(position));
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
+        container.removeView(arrayList.get(position));
     }
 }

@@ -1,5 +1,6 @@
 package com.study.longl.myselfviewdemo;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,7 +12,8 @@ import com.study.longl.myselfviewdemo.utils.StatusBarUtil;
 
 public class MainActivity extends AppCompatActivity {
     private MyFocusView mFocusView;
-    private int ima[] = {R.drawable.image1, R.drawable.image1, R.drawable.image1,R.drawable.image1};
+    private AutoScrollViewPager autoScrollViewPager;
+    private int ima[] = {R.drawable.image1, R.drawable.image4, R.drawable.image5, R.drawable.image6};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 //        WaterWaveView waterWaveView = findViewById(R.id.wwv_test);
 //        waterWaveView.start();
 
-        AutoScrollViewPager autoScrollViewPager = findViewById(R.id.asv_test);
+        autoScrollViewPager = findViewById(R.id.asv_test);
         AutoScrollViewAdapter autoScrollViewAdapter = new AutoScrollViewAdapter(this, ima);
         autoScrollViewPager.setAdapter(autoScrollViewAdapter);
         autoScrollViewPager.start();
