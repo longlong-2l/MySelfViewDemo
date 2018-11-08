@@ -1,15 +1,9 @@
 package com.study.longl.myselfviewdemo.AutoScrollView;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
-
-import com.study.longl.myselfviewdemo.utils.ScreenUtil;
 
 /**
  * Created by longl on 2018/11/5.
@@ -17,10 +11,10 @@ import com.study.longl.myselfviewdemo.utils.ScreenUtil;
  */
 
 public class AutoScrollViewPager extends ViewPager {
-    private static final String TAG = "AutoScrollViewPager";
     private boolean isStart;
     private int currentItem = 0;
-    private int circleNum = 4;        //小圆点数量
+    private int pagerChangeSpeed = 2000;
+    private int dataNum;
 
     private AutoIndicatorScrollViewPager autoIndicatorScrollViewPager;
 
@@ -30,23 +24,22 @@ public class AutoScrollViewPager extends ViewPager {
 
     public AutoScrollViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-//        init();
         addOnPageChangeListener(pageChangeListener);
     }
 
     public void init() {
-
+        dataNum = getAdapter().getCount() - 2;
         autoIndicatorScrollViewPager = (AutoIndicatorScrollViewPager) getParent();
-        autoIndicatorScrollViewPager.initPointView(4);
+        autoIndicatorScrollViewPager.initPointView(dataNum);
     }
 
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
             if (isStart) {
-                currentItem = currentItem % (getAdapter().getCount() - 2 + 1) + 1;
+                currentItem = currentItem % (dataNum + 1) + 1;
                 setCurrentItem(currentItem);
-                postDelayed(mRunnable, 2000);
+                postDelayed(mRunnable, pagerChangeSpeed);
             }
         }
     };
@@ -79,6 +72,10 @@ public class AutoScrollViewPager extends ViewPager {
         isStart = false;
     }
 
+    public void setPagerChangeSpeed(int pagerChangeSpeed) {
+        this.pagerChangeSpeed = pagerChangeSpeed;
+    }
+
     private OnPageChangeListener pageChangeListener = new OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -94,10 +91,10 @@ public class AutoScrollViewPager extends ViewPager {
             switch (state) {
                 case ViewPager.SCROLL_STATE_IDLE:
                     // “偷梁换柱”
-                    if (getCurrentItem() == getAdapter().getCount() - 2 + 1) {
+                    if (getCurrentItem() == dataNum + 1) {
                         setCurrentItem(1, false);
                     }
-                    autoIndicatorScrollViewPager.updatePointView(getCurrentItem());
+                    autoIndicatorScrollViewPager.updatePointView(getCurrentItem() - 1);
                     currentItem = getCurrentItem();
                     break;
             }

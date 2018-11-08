@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--圆形图片-->
     <declare-styleable name="CircleImageView">
         <attr name="isText" format="boolean" />
         <attr name="isColorImage" format="boolean" />
@@ -8,12 +9,14 @@
         <attr name="fillColor" format="color" />
     </declare-styleable>
 
+    <!--仿QQ侧滑-->
     <declare-styleable name="SwipeMenuLayout">
         <attr name="leftViewId" format="reference" />
         <attr name="rightViewId" format="reference" />
         <attr name="contentViewId" format="reference" />
     </declare-styleable>
 
+    <!--波纹扩散-->
     <declare-styleable name="MyWaveView">
         <attr name="waveColor" format="color" />
         <attr name="oneWaveDuration" format="integer" />
@@ -21,10 +24,12 @@
         <attr name="textContent" format="string|reference" />
     </declare-styleable>
 
+    <!--密码输入框-->
     <declare-styleable name="PayPasswordInputView">
         <attr name="maxCount" format="integer" />
     </declare-styleable>
 
+    <!--IM图片展示-->
     <declare-styleable name="MyIMImageView">
         <attr name="arrowTop" format="dimension|reference" />
         <attr name="arrowWidth" format="dimension|reference" />
@@ -33,5 +38,15 @@
         <attr name="direction" format="string" />
         <attr name="showText" format="boolean" />
         <attr name="showShadow" format="boolean" />
+    </declare-styleable>
+
+    <!--轮播图-->
+    <declare-styleable name="AutoIndicatorScrollViewPager">
+        <attr name="hasIndicator" format="boolean" />
+        <attr name="viewpager_change_speed" format="integer" />
+        <attr name="indicator_radius" format="dimension|reference" />
+        <attr name="indicator_space" format="dimension|reference" />
+        <attr name="indicator_normal_color" format="color|reference" />
+        <attr name="indicator_checked_color" format="color|reference" />
     </declare-styleable>
 </resources>

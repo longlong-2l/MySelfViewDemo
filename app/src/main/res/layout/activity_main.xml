@@ -88,13 +88,8 @@
         android:id="@+id/asv_test"
         android:background="@color/white"
         android:layout_width="match_parent"
+        app:indicator_checked_color="@color/colorAccent"
+        app:indicator_normal_color="@color/gray"
         android:layout_height="150dp" />
-
-    <com.study.longl.myselfviewdemo.Views.MyImageView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/asv_test"
-        android:src="@drawable/image5"
-        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

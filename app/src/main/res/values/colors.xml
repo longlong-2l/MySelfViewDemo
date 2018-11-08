@@ -11,4 +11,5 @@
     <color name="default_color_four">#AB81D5</color>
     <color name="favourable_bg_color">#FF7300</color>
     <color name="dialog_item_green">#009688</color>
+    <color name="gray">#FF888888</color>
 </resources>
