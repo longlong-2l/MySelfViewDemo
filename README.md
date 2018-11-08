@@ -10,3 +10,4 @@ Android常见自定义View的集合，从简单到复杂，注释详细，持续
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E8%AF%AD%E9%9F%B3%E5%BD%95%E5%85%A5_208.gif)
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/circleImageView.png)
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%B5%81%E5%8A%A8_208.gif)
+![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E8%BD%AE%E6%92%AD%E5%9B%BE_208.gif)
