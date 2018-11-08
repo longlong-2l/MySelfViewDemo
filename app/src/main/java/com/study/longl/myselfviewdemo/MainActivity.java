@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import com.study.longl.myselfviewdemo.AutoScrollView.AutoIndicatorScrollViewPager;
 import com.study.longl.myselfviewdemo.AutoScrollView.AutoScrollViewAdapter;
 import com.study.longl.myselfviewdemo.AutoScrollView.AutoScrollViewPager;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
@@ -12,8 +13,9 @@ import com.study.longl.myselfviewdemo.utils.StatusBarUtil;
 
 public class MainActivity extends AppCompatActivity {
     private MyFocusView mFocusView;
-    private AutoScrollViewPager autoScrollViewPager;
+    private AutoIndicatorScrollViewPager autoScrollViewPager;
     private int ima[] = {R.drawable.image1, R.drawable.image4, R.drawable.image5, R.drawable.image6};
+//    private int ima[] = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
