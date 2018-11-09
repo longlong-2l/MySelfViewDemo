@@ -11,3 +11,24 @@ Android常见自定义View的集合，从简单到复杂，注释详细，持续
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/circleImageView.png)
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%B5%81%E5%8A%A8_208.gif)
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E8%BD%AE%E6%92%AD%E5%9B%BE_208.gif)
+
+## MyRecyclerView
+仿QQ侧滑菜单：原理简单，侵入性低，可随意扩展。
+
+## PayPasswordView
+支付密码输入框：小黑点形式，四角圆弧，原理简单，可随意扩展。
+
+## MyWaveView
+水波扩散：可用于显示电话拨打状态等，可显示文字，原理简单，可随意扩展。
+
+## MyIMImageView
+聊天页图片显示控件：带小尖角，可设置进度展示和阴影覆盖，原理简单，可随意扩展。
+
+## CircleImageView
+圆形图片：可设置图片，也可设置纯色背景加文字，原理简单，可随意扩展。
+
+## WaterWaveView
+水波加载：可设置水波各种属性，带进度展示，原理简单，可随意扩展。
+
+## AutoIndicatorScrollViewPager
+带指示器的轮播图：带指示器，可调颜色，无限循环，首尾部分轮播自然，原理简单，可随意扩展。
