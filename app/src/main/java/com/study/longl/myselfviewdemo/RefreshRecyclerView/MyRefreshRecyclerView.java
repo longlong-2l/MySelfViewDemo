@@ -26,17 +26,14 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
 
     private RecyclerView recyclerView;
     private View headerView;                  //头部view
-    private ProgressBar progressBar;          //进度条
-    private ImageView headImageView;          //头部图片
     private TextView descriptionView;         //描述
     private int touchSlop;                    //最小滑动判断值，超过这个值才认为滑动了
 
     private int headerHeight;                 //头部控件的高度
     private MarginLayoutParams headerLayoutParams;
     private boolean isFirst = true;           //是否是第一次加载
-    private boolean isCanPull = false;        //是否可以下拉，主要为了防止侵犯RecyclerView的下拉
 
-    private float yDown;
+    private float downY;
 
     private final int WANT_TO_PULL = 0;                  //将要去刷新，但还没有，有可能会松手
     private final int CAN_TO_REFRESHING = 1;             //释放可以刷新
@@ -54,9 +51,7 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
      */
     public MyRefreshRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        Log.i(TAG, "MyRefreshRecyclerView: ");
         headerView = LayoutInflater.from(context).inflate(R.layout.view_refresh_header_normal, null, true);
-        progressBar = headerView.findViewById(R.id.progress_bar);
 //        headImageView = headerView.findViewById(R.id.arrow);
         descriptionView = headerView.findViewById(R.id.description);
         touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -67,7 +62,6 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        Log.i(TAG, "onLayout: ");
         if (isFirst) {
             headerHeight = -headerView.getHeight();
             headerLayoutParams = (MarginLayoutParams) headerView.getLayoutParams();
@@ -86,11 +80,9 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        float downY = 0;
         if (isAbleToPull()) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    Log.i(TAG, "ACTION_DOWN: ");
                     downY = event.getRawY();
                     break;
                 case MotionEvent.ACTION_MOVE:
@@ -116,22 +108,43 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
                     break;
                 case MotionEvent.ACTION_UP:
                     if (currentStatus == WANT_TO_PULL) {
-                        headerLayoutParams.topMargin = headerHeight;
-                        headerView.setLayoutParams(headerLayoutParams);
+                        resetHeader();
                     } else if (currentStatus == CAN_TO_REFRESHING) {
-                        descriptionView.setText("正在刷新中...");
-                        postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                headerLayoutParams.topMargin = headerHeight;
-                                headerView.setLayoutParams(headerLayoutParams);
-                            }
-                        }, 2000);
+                        refreshTask();
                     }
                     break;
             }
+            if (currentStatus == WANT_TO_PULL || currentStatus == CAN_TO_REFRESHING) {
+                recyclerView.setPressed(false);
+                recyclerView.setFocusable(false);
+                recyclerView.setFocusableInTouchMode(false);
+                return true;
+            }
         }
         return false;
+    }
+
+    /**
+     * 重置Header位置，使其回到隐藏状态
+     */
+    private void resetHeader() {
+        headerLayoutParams.topMargin = headerHeight;
+        headerView.setLayoutParams(headerLayoutParams);
+        currentStatus = REFRESHING_FINISH;
+    }
+
+    /**
+     * 开始刷新任务，定时结束后重置header
+     */
+    private void refreshTask() {
+        currentStatus = IS_REFRESHING;
+        descriptionView.setText("正在刷新中...");
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                resetHeader();
+            }
+        }, 2000);
     }
 
     /**
@@ -142,15 +155,6 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
      */
     private boolean isAbleToPull() {
         View firstChild = recyclerView.getChildAt(0);
-        isCanPull = firstChild != null && firstChild.getTop() == 0;
-        Log.i(TAG, "isAbleToPull: " + firstChild.getTop());
-//        if (firstChild != null && firstChild.getTop() < 0) {
-////            if (layoutParams.topMargin != headerHeight) {
-////                layoutParams.topMargin = headerHeight;
-////                headerView.setLayoutParams(layoutParams);
-////            }
-//            isCanPull = false;
-//        }
-        return isCanPull;
+        return firstChild != null && firstChild.getTop() == 0;
     }
 }
