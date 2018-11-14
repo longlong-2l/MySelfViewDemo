@@ -93,7 +93,7 @@
     <!--android:layout_height="150dp" />-->
 
 
-    <com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView
+    <com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2
         android:id="@+id/refreshable_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -102,6 +102,6 @@
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView>
+    </com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2>
 
 </RelativeLayout>

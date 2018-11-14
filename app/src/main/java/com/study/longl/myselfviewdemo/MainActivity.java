@@ -4,13 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import com.study.longl.myselfviewdemo.AutoScrollView.AutoIndicatorScrollViewPager;
 import com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView;
+import com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2;
 import com.study.longl.myselfviewdemo.RefreshRecyclerView.NormalAdapter;
 import com.study.longl.myselfviewdemo.RefreshRecyclerView.RefreshableView;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
@@ -92,10 +95,17 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 20; i++) {
             data.add("content" + i);
         }
-        final MyRefreshRecyclerView refreshableView = findViewById(R.id.refreshable_view);
+        final MyRefreshRecyclerView2 refreshableView = findViewById(R.id.refreshable_view);
         RecyclerView listView = findViewById(R.id.list_view);
         listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        listView.setAdapter(new NormalAdapter(data));
+        NormalAdapter normalAdapter = new NormalAdapter(data);
+        listView.setAdapter(normalAdapter);
+        normalAdapter.setOnItemClickListener(new NormalAdapter.onItemClickListener() {
+            @Override
+            public void onItemClickListener(View view) {
+                Toast.makeText(getApplicationContext(), "测试2", Toast.LENGTH_SHORT).show();
+            }
+        });
 //        refreshableView.setOnRefreshListener(new RefreshableView.PullToRefreshListener() {
 //            @Override
 //            public void onRefresh() {

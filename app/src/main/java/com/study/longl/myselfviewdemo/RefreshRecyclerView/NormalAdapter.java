@@ -19,6 +19,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.MyViewHold
 
     private Context mContext;
     private ArrayList<String> mData;
+    private onItemClickListener myOnItemClickListener;
 
     public NormalAdapter(ArrayList<String> data) {
         this.mData = data;
@@ -32,6 +33,12 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.textView.setText(mData.get(position));
+        holder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myOnItemClickListener.onItemClickListener(v);
+            }
+        });
     }
 
     @Override
@@ -47,5 +54,13 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.MyViewHold
             super(itemView);
             textView = itemView.findViewById(R.id.tv_refresh_content);
         }
+    }
+
+    public void setOnItemClickListener(onItemClickListener onItemClickListener){
+        this.myOnItemClickListener = onItemClickListener;
+    }
+
+    public interface onItemClickListener{
+        void onItemClickListener(View view);
     }
 }
