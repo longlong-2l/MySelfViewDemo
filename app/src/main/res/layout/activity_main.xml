@@ -84,12 +84,24 @@
     <!--android:layout_alignParentStart="true"-->
     <!--android:layout_alignParentTop="true" />-->
 
-    <com.study.longl.myselfviewdemo.AutoScrollView.AutoIndicatorScrollViewPager
-        android:id="@+id/asv_test"
-        android:background="@color/white"
+    <!--<com.study.longl.myselfviewdemo.AutoScrollView.AutoIndicatorScrollViewPager-->
+    <!--android:id="@+id/asv_test"-->
+    <!--android:background="@color/white"-->
+    <!--android:layout_width="match_parent"-->
+    <!--app:indicator_checked_color="@color/colorAccent"-->
+    <!--app:indicator_normal_color="@color/gray"-->
+    <!--android:layout_height="150dp" />-->
+
+
+    <com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView
+        android:id="@+id/refreshable_view"
         android:layout_width="match_parent"
-        app:indicator_checked_color="@color/colorAccent"
-        app:indicator_normal_color="@color/gray"
-        android:layout_height="150dp" />
+        android:layout_height="match_parent" >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView>
 
 </RelativeLayout>
