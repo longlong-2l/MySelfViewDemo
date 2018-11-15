@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.study.longl.myselfviewdemo.R;
@@ -86,9 +84,9 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
                     downY = event.getRawY();
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    Log.i(TAG, "ACTION_MOVE: ");
                     float downY1 = event.getRawY();
                     float dis = downY1 - downY;
+                    //当手指上滑并且下拉头部没有出现时，屏蔽下拉事件
                     if (dis <= 0 && headerLayoutParams.topMargin <= headerHeight) {
                         return false;
                     }
@@ -108,12 +106,13 @@ public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchL
                     break;
                 case MotionEvent.ACTION_UP:
                     if (currentStatus == WANT_TO_PULL) {
-                        resetHeader();
+                        resetHeader(); //当位移量没有头部高的时候，如果松手了，应该回归位置
                     } else if (currentStatus == CAN_TO_REFRESHING) {
-                        refreshTask();
+                        refreshTask(); //当位移量比头部高的时候，如果松手了，触发刷新事件
                     }
                     break;
             }
+            //当头部处于将要出来或已经出来的状态，就屏蔽掉RecyclerView的焦点
             if (currentStatus == WANT_TO_PULL || currentStatus == CAN_TO_REFRESHING) {
                 recyclerView.setPressed(false);
                 recyclerView.setFocusable(false);

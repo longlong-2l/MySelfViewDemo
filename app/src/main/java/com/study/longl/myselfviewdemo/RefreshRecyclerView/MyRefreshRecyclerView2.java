@@ -22,7 +22,6 @@ import com.study.longl.myselfviewdemo.R;
 
 public class MyRefreshRecyclerView2 extends LinearLayout {
     private static final String TAG = "MyRefreshRecyclerView2";
-
     private RecyclerView recyclerView;
     private View headerView;                  //头部view
     private TextView descriptionView;         //描述
@@ -99,48 +98,37 @@ public class MyRefreshRecyclerView2 extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (isAbleToPull()) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    Log.i(TAG, "ACTION_DOWN: ");
-                    downY = event.getRawY();
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    Log.i(TAG, "ACTION_MOVE: ");
-                    float downY1 = event.getRawY();
-                    float dis = downY1 - downY;
-                    if (dis <= 0 && headerLayoutParams.topMargin <= headerHeight) {
-                        return false;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                downY = event.getRawY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float downY1 = event.getRawY();
+                float dis = downY1 - downY;
+                if (dis <= 0 && headerLayoutParams.topMargin <= headerHeight) {
+                    return false;
+                }
+                if (dis < touchSlop) {
+                    return false;
+                }
+                if (currentStatus != IS_REFRESHING) {
+                    descriptionView.setText("释放立即刷新...");
+                    headerLayoutParams.topMargin = (int) (dis / 3 + headerHeight);
+                    headerView.setLayoutParams(headerLayoutParams);
+                    if (headerLayoutParams.topMargin < 0) {
+                        currentStatus = WANT_TO_PULL;
+                    } else {
+                        currentStatus = CAN_TO_REFRESHING;
                     }
-                    if (dis < touchSlop) {
-                        return false;
-                    }
-                    if (currentStatus != IS_REFRESHING) {
-                        descriptionView.setText("释放立即刷新...");
-                        headerLayoutParams.topMargin = (int) (dis / 3 + headerHeight);
-                        headerView.setLayoutParams(headerLayoutParams);
-                        if (headerLayoutParams.topMargin < 0) {
-                            currentStatus = WANT_TO_PULL;
-                        } else {
-                            currentStatus = CAN_TO_REFRESHING;
-                        }
-                    }
-                    break;
-                case MotionEvent.ACTION_UP:
-                    Log.i(TAG, "ACTION_UP: ");
-                    if (currentStatus == WANT_TO_PULL) {
-                        resetHeader();
-                    } else if (currentStatus == CAN_TO_REFRESHING) {
-                        refreshTask();
-                    }
-                    break;
-            }
-            if (currentStatus == WANT_TO_PULL || currentStatus == CAN_TO_REFRESHING) {
-                recyclerView.setPressed(false);
-                recyclerView.setFocusable(false);
-                recyclerView.setFocusableInTouchMode(false);
-                return true;
-            }
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                if (currentStatus == WANT_TO_PULL) {
+                    resetHeader();
+                } else if (currentStatus == CAN_TO_REFRESHING) {
+                    refreshTask();
+                }
+                break;
         }
         return false;
     }
@@ -167,16 +155,4 @@ public class MyRefreshRecyclerView2 extends LinearLayout {
             }
         }, 2000);
     }
-
-    /**
-     * 判断是否可以向下滚动
-     *
-     * @return 是否可以滚动，为了防止侵犯recyclerView
-     * 自己的滚动
-     */
-    private boolean isAbleToPull() {
-        View firstChild = recyclerView.getChildAt(0);
-        return firstChild != null && firstChild.getTop() == 0;
-    }
-
 }
