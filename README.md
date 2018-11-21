@@ -12,6 +12,8 @@ Android常见自定义View的集合，从简单到复杂，注释详细，持续
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%B5%81%E5%8A%A8_208.gif)
 ![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E8%BD%AE%E6%92%AD%E5%9B%BE_208.gif)
 
+![](https://github.com/longlong-2l/MySelfViewDemo/blob/master/img/%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E5%92%8C%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD_208.gif)
+
 ## MyRecyclerView
 仿QQ侧滑菜单：原理简单，侵入性低，可随意扩展。
 
@@ -32,3 +34,6 @@ Android常见自定义View的集合，从简单到复杂，注释详细，持续
 
 ## AutoIndicatorScrollViewPager
 带指示器的轮播图：带指示器，可调颜色，无限循环，首尾部分轮播自然，原理简单，可随意扩展。
+
+## MyRefreshRecyclerView2
+带下拉刷新的LinearLayout
