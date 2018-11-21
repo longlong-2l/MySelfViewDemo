@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 normalAdapter.setCurrentStatus(NormalAdapter.STATUS_FINISH);
                             }
-                        }, 1000);
+                        }, 3000);
                     }
                 }
             }
