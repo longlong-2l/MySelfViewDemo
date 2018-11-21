@@ -1,11 +1,13 @@
 package com.study.longl.myselfviewdemo;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,6 +24,8 @@ import com.study.longl.myselfviewdemo.Views.MyFocusView;
 import com.study.longl.myselfviewdemo.Views.PayPasswordView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private MyFocusView mFocusView;
@@ -29,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private int ima[] = {R.drawable.image1, R.drawable.image4, R.drawable.image5, R.drawable.image6};
     //    private int ima[] = {};
     String[] items = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"};
+    private boolean isNotBottom = false;                            //是否滑动到底部
+    private static final String TAG = "MainActivity";
+    private ArrayList<String> data = new ArrayList<>();
+    private NormalAdapter normalAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,19 +104,48 @@ public class MainActivity extends AppCompatActivity {
 //        autoScrollViewPager.start();
 
         /*下拉刷新RecyclerView*/
-        ArrayList<String> data = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             data.add("content" + i);
         }
         final MyRefreshRecyclerView2 refreshableView = findViewById(R.id.refreshable_view);
         RecyclerView listView = findViewById(R.id.list_view);
         listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        NormalAdapter normalAdapter = new NormalAdapter(data);
+        normalAdapter = new NormalAdapter(data);
         listView.setAdapter(normalAdapter);
         normalAdapter.setOnItemClickListener(new NormalAdapter.onItemClickListener() {
             @Override
             public void onItemClickListener(View view) {
                 Toast.makeText(getApplicationContext(), "测试2", Toast.LENGTH_SHORT).show();
+            }
+        });
+        listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            int lastVisibleItemPosition;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!isNotBottom) {
+                    if (data.size() < 30) {
+                        normalAdapter.setCurrentStatus(NormalAdapter.STATUS_LOADING);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (int i = 0; i < 10; i++) {
+                                    data.add("content" + i + 20);
+                                }
+                                normalAdapter.setCurrentStatus(NormalAdapter.STATUS_FINISH);
+                            }
+                        }, 1000);
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                isNotBottom = recyclerView.canScrollVertically(1);
+//                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+//                lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
             }
         });
     }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.study.longl.myselfviewdemo.R;
  */
 
 public class MyRefreshRecyclerView2 extends LinearLayout {
+    private static final String TAG = "MyRefreshRecyclerView2";
     private RecyclerView recyclerView;
     private View headerView;                  //头部view
     private TextView descriptionView;         //描述
@@ -36,6 +38,7 @@ public class MyRefreshRecyclerView2 extends LinearLayout {
     private final int IS_REFRESHING = 2;                 //正在刷新
     private final int REFRESHING_FINISH = 3;             //刷新完成
     private int currentStatus = REFRESHING_FINISH;       //当前状态
+    private boolean isBottom;                            //是否滑动到底部
 
     public MyRefreshRecyclerView2(Context context) {
         this(context, null);
@@ -153,4 +156,5 @@ public class MyRefreshRecyclerView2 extends LinearLayout {
             }
         }, 2000);
     }
+
 }
