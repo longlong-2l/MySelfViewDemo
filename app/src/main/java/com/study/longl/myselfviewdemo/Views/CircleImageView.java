@@ -22,6 +22,9 @@ import com.study.longl.myselfviewdemo.R;
 /**
  * Created by longl on 2018/10/22.
  * 圆形图片
+ * 1.获取Bitmap
+ * 2.设置Bitmap着色器和矩阵，并设置到画笔中
+ * 3.画出图片
  */
 
 public class CircleImageView extends android.support.v7.widget.AppCompatImageView {

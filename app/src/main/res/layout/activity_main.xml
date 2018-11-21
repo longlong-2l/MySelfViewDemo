@@ -31,17 +31,17 @@
     <!--app:waveColor="@color/colorPrimaryDark" />-->
 
     <!-- 小黑点密码输入-->
-    <!--<com.study.longl.myselfviewdemo.Views.PayPasswordView-->
-    <!--android:id="@+id/ppv_my"-->
-    <!--android:layout_width="300dp"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginTop="15dp" />-->
+    <!---->
 
     <!--聊天页图片展示-->
     <!--<com.study.longl.myselfviewdemo.Views.MyIMImageView-->
     <!--android:id="@+id/miv_test"-->
-    <!--android:layout_width="150dp"-->
+    <!--android:layou<com.study.longl.myselfviewdemo.Views.PayPasswordView-->
+    <!--android:id="@+id/ppv_my"-->
+    <!--android:layout_width="300dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="15dp" />t_width="150dp"-->
     <!--android:layout_height="200dp"-->
     <!--android:layout_centerHorizontal="true"-->
     <!--android:layout_marginTop="50dp"-->

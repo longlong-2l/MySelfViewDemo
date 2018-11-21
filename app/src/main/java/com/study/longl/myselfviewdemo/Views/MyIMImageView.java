@@ -17,18 +17,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 
 import com.study.longl.myselfviewdemo.R;
 
 /**
  * Created by longl on 2018/10/22.
- * 聊天页显示图片(传统)
+ * 聊天页显示图片(传统)，带小三角形的
  */
 
 public class MyIMImageView extends android.support.v7.widget.AppCompatImageView {
-    private static final String TAG = "MyIMImageView";
 
     private float mAngleLength = dp2px(20);      //圆弧半径
     private float mArrowTop = dp2px(40);         //箭头距离顶部的位置，有的需要箭头在正中间
@@ -79,7 +77,6 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.i(TAG, "onDraw: ");
         if (mBitmapPaint != null) {
             canvas.drawPath(mPath, mBitmapPaint);
             drawShadowAndProgress(canvas, mBitmapRectF);  //画阴影和进度
@@ -113,7 +110,6 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.i(TAG, "onSizeChanged: ");
         mBitmapRectF = new RectF(getPaddingLeft(), getPaddingTop(), getRight()
                 - getLeft() - getPaddingRight(), getBottom() - getTop()
                 - getPaddingBottom());
@@ -171,7 +167,6 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
     @Override
     public void setImageBitmap(Bitmap bm) {
         super.setImageBitmap(bm);
-        Log.i(TAG, "setImageBitmap: ");
         mBitmap = bm;
 //        setBitmap();
     }
@@ -179,7 +174,6 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
     @Override
     public void setImageDrawable(@Nullable Drawable drawable) {
         super.setImageDrawable(drawable);
-        Log.i(TAG, "setImageDrawable: ");
         mBitmap = getBitmapFromDrawable(drawable);
 //        setBitmap();
     }
@@ -187,7 +181,6 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
     @Override
     public void setImageResource(int resId) {
         super.setImageResource(resId);
-        Log.i(TAG, "setImageResource: ");
         mBitmap = getBitmapFromDrawable(getDrawable());
 //        setBitmap();
     }
@@ -218,6 +211,9 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
         return bitmap;
     }
 
+    /**
+     * 设置着色器和Bitmap
+     */
     private void setBitmap() {
         mTextPaint = new Paint();
         //设置着色器为拉伸
@@ -232,6 +228,9 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
 //        invalidate();
     }
 
+    /**
+     * 设置矩阵，先缩放再位移
+     */
     private void setMatrix() {
         float scaleX;
         float scaleY;
@@ -240,18 +239,21 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
 
         Matrix mShaderMatrix = new Matrix();
         mShaderMatrix.set(null);
-        Log.i(TAG, "mBitmapRect" + mBitmapRectF);
-        Log.i(TAG, "bitmap " + mBitmapWidth + " " + mBitmapHeight);
         scaleY = (mBitmapRectF.bottom - mBitmapRectF.top) / mBitmapHeight;
         dy = mBitmapRectF.top;
         scaleX = (mBitmapRectF.right - mBitmapRectF.left) / mBitmapWidth;
         dx = mBitmapRectF.left;
-        Log.i(TAG, "scaleX: " + scaleX + " scaleY: " + scaleY);
-        mShaderMatrix.setScale(scaleX, scaleY);
-        mShaderMatrix.postTranslate(dx, dy);
+        mShaderMatrix.setScale(scaleX, scaleY); //按比例缩放，缩放点为view左上角
+        mShaderMatrix.postTranslate(dx, dy);    //位移
         mBitmapShader.setLocalMatrix(mShaderMatrix);
     }
 
+    /**
+     * 像素转换 dp转px
+     *
+     * @param dp dp数值
+     * @return px
+     */
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getContext().getResources().getDisplayMetrics());
     }

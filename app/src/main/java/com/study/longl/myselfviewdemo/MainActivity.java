@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,7 @@ import com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2
 import com.study.longl.myselfviewdemo.RefreshRecyclerView.NormalAdapter;
 import com.study.longl.myselfviewdemo.RefreshRecyclerView.RefreshableView;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
+import com.study.longl.myselfviewdemo.Views.PayPasswordView;
 
 import java.util.ArrayList;
 
@@ -91,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 //        AutoScrollViewAdapter autoScrollViewAdapter = new AutoScrollViewAdapter(this, ima);
 //        autoScrollViewPager.setAdapter(autoScrollViewAdapter);
 //        autoScrollViewPager.start();
+
+        /*下拉刷新RecyclerView*/
         ArrayList<String> data = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             data.add("content" + i);
@@ -106,16 +111,5 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "测试2", Toast.LENGTH_SHORT).show();
             }
         });
-//        refreshableView.setOnRefreshListener(new RefreshableView.PullToRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                try {
-//                    Thread.sleep(3000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                refreshableView.finishRefreshing();
-//            }
-//        }, 0);
     }
 }

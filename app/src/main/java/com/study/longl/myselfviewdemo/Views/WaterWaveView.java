@@ -9,7 +9,6 @@ import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -50,7 +49,6 @@ public class WaterWaveView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.i("ffff", "onMeasure: ");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         width = getViewSize(400, widthMeasureSpec);
         height = getViewSize(400, widthMeasureSpec);
@@ -77,7 +75,6 @@ public class WaterWaveView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.i("ffff", "onSizeChanged: ");
 //        startPoint = new Point(-cycle * 3, height / 2);
         startPoint = new Point(0, height / 2);
         path = new Path();
@@ -104,9 +101,9 @@ public class WaterWaveView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        circlePath.addCircle(width / 2, height / 2, width / 2, Path.Direction.CW);
-        canvas.clipPath(circlePath);
-        canvas.drawPath(circlePath, circlePaint);
+        circlePath.addCircle(width / 2, height / 2, width / 2, Path.Direction.CW); //设置一个圆path
+        canvas.clipPath(circlePath);               //剪辑路径
+        canvas.drawPath(circlePath, circlePaint);  //把圆画出来
         circlePath.reset();
 
         startPoint.y = (int) (height - (progress / 100.0 * height));
@@ -151,6 +148,10 @@ public class WaterWaveView extends View {
 //        }
     }
 
+    /**
+     * 设置进度，重新刷新view
+     * @param progress int
+     */
     public void setProgress(int progress) {
         if (progress > 100 || progress < 0) {
             throw new RuntimeException(getClass().getName() + "进度值须在[0,100]");

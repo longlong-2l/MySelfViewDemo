@@ -13,11 +13,9 @@ import com.study.longl.myselfviewdemo.R;
 
 /**
  * Created by longl on 2018/10/22.
- * 小黑点密码输入view
+ * 小黑点密码输入框view，边框为弧线
  */
 public class PayPasswordView extends android.support.v7.widget.AppCompatEditText {
-
-    private static final String TAG = "PayPasswordView";
     private int circleMount = 6;             //小圆点数量为6个
     private RectF storkRect = new RectF();   //边框矩形
 
@@ -46,8 +44,8 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
         super(context, attrs);
         getAttr(attrs);
         initPaint();
-        this.setBackgroundColor(Color.TRANSPARENT);
-        this.setCursorVisible(false);
+        this.setBackgroundColor(Color.TRANSPARENT); //设置背景透明
+        this.setCursorVisible(false);               //设置光标不可见
         this.setFilters(new InputFilter[]{new InputFilter.LengthFilter(circleMount)});
     }
 
@@ -77,6 +75,7 @@ public class PayPasswordView extends android.support.v7.widget.AppCompatEditText
     protected void onDraw(Canvas canvas) {
         canvas.drawRoundRect(storkRect, 20, 20, storkPaint);  //画边框
         for (int i = 1; i < circleMount; i++) {
+            //画分割线
             canvas.drawLine(i * divideLineStartX, 0, i * divideLineStartX, height, divideLinePaint);
         }
         for (int i = 0; i < textLength; i++) {
