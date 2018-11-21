@@ -120,16 +120,25 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         }
     }
 
+    /**
+     * 设置Bitmap图片
+     */
     private void setBitmap() {
         if (mBitmap != null) {
             mBitmapPaint = new Paint();
             mBitmapPaint.setAntiAlias(true);
+            //着色器设置缩放方式
             BitmapShader bitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
             mBitmapPaint.setShader(bitmapShader);
             bitmapShader.setLocalMatrix(setMatrix(mBitmap));
         }
     }
 
+    /**
+     * 矩阵变换，先缩放再位移
+     * @param bitmap bitmap
+     * @return Matrix
+     */
     private Matrix setMatrix(Bitmap bitmap) {
         float scaleX;
         float scaleY;
@@ -142,8 +151,8 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         scaleY = (mBitmapRect.bottom - mBitmapRect.top) / bitmap.getHeight(); //height=568  0
         dx = mBitmapRect.left;
         dy = mBitmapRect.top;
-        matrix.setScale(scaleX, scaleY);
-        matrix.postTranslate(dx, dy);
+        matrix.setScale(scaleX, scaleY); //缩放
+        matrix.postTranslate(dx, dy);    //位移
         return matrix;
     }
 
