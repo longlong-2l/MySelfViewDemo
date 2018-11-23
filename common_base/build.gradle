@@ -10,6 +10,14 @@ android {
         versionName rootProject.ext.version.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //Arouter路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                includeCompileClasspath = true
+            }
+        }
     }
 
     buildTypes {
@@ -28,4 +36,10 @@ dependencies {
     api rootProject.ext.dependencies["junit"]
     api rootProject.ext.dependencies["runner"]
     api rootProject.ext.dependencies["espresso"]
+
+    //路由配置
+    annotationProcessor rootProject.ext.dependencies["arouter_compiler"]
+    api rootProject.ext.dependencies["arouter_api"]
+    api rootProject.ext.dependencies["arouter_annotation"]
+
 }

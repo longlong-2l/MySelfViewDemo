@@ -17,14 +17,20 @@ ext {
             runner                  : "1.0.2",
             espresso                : "3.0.2",
             fastjson                : "1.1.54",
+            arouterApiVersion       : "1.4.0",
+            arouterCompilerVersion  : "1.2.1",
+            arouterannotationVersion: "1.0.4",
     ]
 
-    dependencies = ["appcompat_v7"     : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
-                    "constraint_layout": "com.android.support.constraint:constraint-layout:${version["constraintLayoutVersion"]}",
-                    "recyclerview"     : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
-                    "junit"            : "junit:junit:${version["junitVersion"]}",
-                    "runner"           : "com.android.support.test:runner:${version["runner"]}",
-                    "espresso"         : "com.android.support.test.espresso:espresso-core:${version["espresso"]}",
-                    "fastjson"         : "com.alibaba:fastjson:${version["fastjson"]}.android",
+    dependencies = ["appcompat_v7"      : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+                    "constraint_layout" : "com.android.support.constraint:constraint-layout:${version["constraintLayoutVersion"]}",
+                    "recyclerview"      : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+                    "junit"             : "junit:junit:${version["junitVersion"]}",
+                    "runner"            : "com.android.support.test:runner:${version["runner"]}",
+                    "espresso"          : "com.android.support.test.espresso:espresso-core:${version["espresso"]}",
+                    "fastjson"          : "com.alibaba:fastjson:${version["fastjson"]}.android",
+                    "arouter_api"       : "com.alibaba:arouter-api:${version["arouterApiVersion"]}",
+                    "arouter_compiler"  : "com.alibaba:arouter-compiler:${version["arouterCompilerVersion"]}",
+                    "arouter_annotation": "com.alibaba:arouter-annotation:${version["arouterannotationVersion"]}",
     ]
 }

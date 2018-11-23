@@ -1,1 +1,1 @@
-include ':app', ':common_base'
+include ':app', ':common_base', ':module_input_password'
