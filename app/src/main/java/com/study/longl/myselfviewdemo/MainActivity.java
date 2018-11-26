@@ -157,8 +157,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build("/password/InputPasswordMainActivity").navigation();
-//                startActivity(new Intent(MainActivity.this, InputPasswordMainActivity.class));
+                startActivity(new Intent(MainActivity.this, InputPasswordMainActivity.class));
             }
         });
     }

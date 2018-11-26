@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common_base/common_base.iml" filepath="$PROJECT_DIR$/common_base/common_base.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_input_password/module_input_password.iml" filepath="$PROJECT_DIR$/module_input_password/module_input_password.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_wave_water/module_wave_water.iml" filepath="$PROJECT_DIR$/module_wave_water/module_wave_water.iml" />
     </modules>
   </component>
 </project>

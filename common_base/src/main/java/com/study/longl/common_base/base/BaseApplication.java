@@ -31,6 +31,8 @@ public class BaseApplication extends Application {
     }
 
     private void initRouter() {
+        ARouter.openLog();  // 打印日志
+        ARouter.openDebug();
         ARouter.init(application);
     }
 
