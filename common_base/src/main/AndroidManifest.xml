@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.study.longl.common_base" />
+    package="com.study.longl.common_base" >
+
+    <application>
+
+    </application>
+</manifest>

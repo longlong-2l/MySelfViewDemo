@@ -1,5 +1,6 @@
 package com.study.longl.myselfviewdemo;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.study.longl.module_input_password.ui.InputPasswordMainActivity;
 import com.study.longl.myselfviewdemo.AutoScrollView.AutoIndicatorScrollViewPager;
 import com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView;
 import com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2;
@@ -104,48 +108,57 @@ public class MainActivity extends AppCompatActivity {
 //        autoScrollViewPager.start();
 
         /*下拉刷新RecyclerView*/
-        for (int i = 0; i < 20; i++) {
-            data.add("content" + i);
-        }
-        final MyRefreshRecyclerView2 refreshableView = findViewById(R.id.refreshable_view);
-        RecyclerView listView = findViewById(R.id.list_view);
-        listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        normalAdapter = new NormalAdapter(data);
-        listView.setAdapter(normalAdapter);
-        normalAdapter.setOnItemClickListener(new NormalAdapter.onItemClickListener() {
-            @Override
-            public void onItemClickListener(View view) {
-                Toast.makeText(getApplicationContext(), "测试2", Toast.LENGTH_SHORT).show();
-            }
-        });
-        listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            int lastVisibleItemPosition;
+//        for (int i = 0; i < 20; i++) {
+//            data.add("content" + i);
+//        }
+//        final MyRefreshRecyclerView2 refreshableView = findViewById(R.id.refreshable_view);
+//        RecyclerView listView = findViewById(R.id.list_view);
+//        listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//        normalAdapter = new NormalAdapter(data);
+//        listView.setAdapter(normalAdapter);
+//        normalAdapter.setOnItemClickListener(new NormalAdapter.onItemClickListener() {
+//            @Override
+//            public void onItemClickListener(View view) {
+//                Toast.makeText(getApplicationContext(), "测试2", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            int lastVisibleItemPosition;
+//
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                if (!isNotBottom) {
+//                    if (data.size() < 30) {
+//                        normalAdapter.setCurrentStatus(NormalAdapter.STATUS_LOADING);
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                for (int i = 0; i < 10; i++) {
+//                                    data.add("content" + i + 20);
+//                                }
+//                                normalAdapter.setCurrentStatus(NormalAdapter.STATUS_FINISH);
+//                            }
+//                        }, 3000);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//                isNotBottom = recyclerView.canScrollVertically(1);
+////                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+////                lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+//            }
+//        });
 
+        Button button = findViewById(R.id.bt_go);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (!isNotBottom) {
-                    if (data.size() < 30) {
-                        normalAdapter.setCurrentStatus(NormalAdapter.STATUS_LOADING);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                for (int i = 0; i < 10; i++) {
-                                    data.add("content" + i + 20);
-                                }
-                                normalAdapter.setCurrentStatus(NormalAdapter.STATUS_FINISH);
-                            }
-                        }, 3000);
-                    }
-                }
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                isNotBottom = recyclerView.canScrollVertically(1);
-//                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-//                lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+            public void onClick(View v) {
+                ARouter.getInstance().build("/password/InputPasswordMainActivity").navigation();
+//                startActivity(new Intent(MainActivity.this, InputPasswordMainActivity.class));
             }
         });
     }

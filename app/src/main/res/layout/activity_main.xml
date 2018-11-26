@@ -93,15 +93,21 @@
     <!--android:layout_height="150dp" />-->
 
 
-    <com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2
-        android:id="@+id/refreshable_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <!--<com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2-->
+    <!--android:id="@+id/refreshable_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" >-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2>
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/list_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
+    <!--</com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2>-->
+
+    <Button
+        android:id="@+id/bt_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GO" />
 
 </RelativeLayout>

@@ -9,6 +9,14 @@ android {
         versionCode rootProject.ext.version.versionCode
         versionName rootProject.ext.version.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //Arouter路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                includeCompileClasspath = true
+            }
+        }
     }
     buildTypes {
         release {
@@ -23,4 +31,7 @@ dependencies {
 
     //公用依赖包
     implementation project(':common_base')
+    if(!Boolean.valueOf(rootProject.ext.isModule)){
+        implementation project(':module_input_password')
+    }
 }
