@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_width">80sp</dimen>
+    <dimen name="textsp">18sp</dimen>
+    <dimen name="text28sp">28sp</dimen>
+    <dimen name="shibadp">16dp</dimen>
+</resources>

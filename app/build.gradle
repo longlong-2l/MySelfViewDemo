@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.version.compileSdkVersion
     defaultConfig {
         applicationId "com.study.longl.myselfviewdemo"
         minSdkVersion rootProject.ext.version.minSdkVersion
@@ -32,7 +32,12 @@ dependencies {
     //公用依赖包
     implementation project(':common_base')
     if(!Boolean.valueOf(rootProject.ext.isModule)){
-        implementation project(':module_input_password')
+        implementation project(':module_wave')
         implementation project(':module_wave_water')
+        implementation project(':module_refresh_recyclerview')
+        implementation project(':module_slide_recyclerview')
+        implementation project(':module_slide_recyclerview')
+        implementation project(':module_sound_send_button')
+        implementation project(':module_auto_scrollview')
     }
 }

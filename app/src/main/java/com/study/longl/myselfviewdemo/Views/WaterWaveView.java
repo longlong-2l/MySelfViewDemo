@@ -26,10 +26,11 @@ public class WaterWaveView extends View {
     private Paint circlePaint;
     private Paint textPaint;
 
-    private int waveHeight = 340;
-    private int cycle = (int) (waveHeight / (1.7));
+    private int waveHeight =80;
+//    private int cycle = (int) (waveHeight / (1.7));
+    private int cycle = 160;
 
-    private int mNewWaveSpeed = 100;
+    private int mNewWaveSpeed = 150;
     private int translateX = 40;
     private int progress = 0;
 

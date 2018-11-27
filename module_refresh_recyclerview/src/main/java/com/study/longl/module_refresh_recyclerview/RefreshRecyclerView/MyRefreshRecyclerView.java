@@ -1,0 +1,159 @@
+package com.study.longl.module_refresh_recyclerview.RefreshRecyclerView;
+
+import android.content.Context;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.study.longl.module_refresh_recyclerview.R;
+
+/**
+ * Created by longl on 2018/11/13.
+ * 自定义带下拉刷新的RecyclerView，
+ * 用的非拦截点击事件序列的方法
+ */
+
+public class MyRefreshRecyclerView extends LinearLayout implements View.OnTouchListener {
+    private static final String TAG = "MyRefreshRecyclerView";
+
+    private RecyclerView recyclerView;
+    private View headerView;                  //头部view
+    private TextView descriptionView;         //描述
+    private int touchSlop;                    //最小滑动判断值，超过这个值才认为滑动了
+
+    private int headerHeight;                 //头部控件的高度
+    private MarginLayoutParams headerLayoutParams;
+    private boolean isFirst = true;           //是否是第一次加载
+
+    private float downY;
+
+    private final int WANT_TO_PULL = 0;                  //将要去刷新，但还没有，有可能会松手
+    private final int CAN_TO_REFRESHING = 1;             //释放可以刷新
+    private final int IS_REFRESHING = 2;                 //正在刷新
+    private final int REFRESHING_FINISH = 3;             //刷新完成
+    private int currentStatus = REFRESHING_FINISH;       //当前状态
+
+    public MyRefreshRecyclerView(Context context) {
+        this(context, null);
+    }
+
+    /**
+     * 构造函数，初始化一些操作
+     * 加入头部view，设置垂直属性等
+     */
+    public MyRefreshRecyclerView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        headerView = LayoutInflater.from(context).inflate(R.layout.view_refresh_header_normal, null, true);
+//        headImageView = headerView.findViewById(R.id.arrow);
+        descriptionView = headerView.findViewById(R.id.description);
+        touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        setOrientation(VERTICAL);
+        addView(headerView, 0);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if (isFirst) {
+            headerHeight = -headerView.getHeight();
+            headerLayoutParams = (MarginLayoutParams) headerView.getLayoutParams();
+            headerLayoutParams.topMargin = headerHeight;
+            headerView.setLayoutParams(headerLayoutParams);
+            isFirst = false;
+        }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        recyclerView = (RecyclerView) getChildAt(1);
+        recyclerView.setOnTouchListener(this);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (isAbleToPull()) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    downY = event.getRawY();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    float downY1 = event.getRawY();
+                    float dis = downY1 - downY;
+                    //当手指上滑并且下拉头部没有出现时，屏蔽下拉事件
+                    if (dis <= 0 && headerLayoutParams.topMargin <= headerHeight) {
+                        return false;
+                    }
+                    if (dis < touchSlop) {
+                        return false;
+                    }
+                    if (currentStatus != IS_REFRESHING) {
+                        descriptionView.setText("释放立即刷新...");
+                        headerLayoutParams.topMargin = (int) (dis / 3 + headerHeight);
+                        headerView.setLayoutParams(headerLayoutParams);
+                        if (headerLayoutParams.topMargin < 0) {
+                            currentStatus = WANT_TO_PULL;
+                        } else {
+                            currentStatus = CAN_TO_REFRESHING;
+                        }
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (currentStatus == WANT_TO_PULL) {
+                        resetHeader(); //当位移量没有头部高的时候，如果松手了，应该回归位置
+                    } else if (currentStatus == CAN_TO_REFRESHING) {
+                        refreshTask(); //当位移量比头部高的时候，如果松手了，触发刷新事件
+                    }
+                    break;
+            }
+            //当头部处于将要出来或已经出来的状态，就屏蔽掉RecyclerView的焦点
+            if (currentStatus == WANT_TO_PULL || currentStatus == CAN_TO_REFRESHING) {
+                recyclerView.setPressed(false);
+                recyclerView.setFocusable(false);
+                recyclerView.setFocusableInTouchMode(false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 重置Header位置，使其回到隐藏状态
+     */
+    private void resetHeader() {
+        headerLayoutParams.topMargin = headerHeight;
+        headerView.setLayoutParams(headerLayoutParams);
+        currentStatus = REFRESHING_FINISH;
+    }
+
+    /**
+     * 开始刷新任务，定时结束后重置header
+     */
+    private void refreshTask() {
+        currentStatus = IS_REFRESHING;
+        descriptionView.setText("正在刷新中...");
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                resetHeader();
+            }
+        }, 2000);
+    }
+
+    /**
+     * 判断是否可以向下滚动
+     *
+     * @return 是否可以滚动，为了防止侵犯recyclerView
+     * 自己的滚动
+     */
+    private boolean isAbleToPull() {
+        View firstChild = recyclerView.getChildAt(0);
+        return firstChild != null && firstChild.getTop() == 0;
+    }
+}

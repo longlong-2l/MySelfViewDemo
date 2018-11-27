@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--波纹扩散-->
+    <declare-styleable name="MyWaveView">
+        <attr name="waveColor" format="color" />
+        <attr name="oneWaveDuration" format="integer" />
+        <attr name="newWaveSpeed" format="integer" />
+        <attr name="textContent" format="string|reference" />
+    </declare-styleable>
+</resources>

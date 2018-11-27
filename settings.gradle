@@ -1,1 +1,1 @@
-include ':app', ':common_base', ':module_input_password', ':module_wave_water'
+include ':app', ':common_base', ':module_wave', ':module_wave_water', ':module_refresh_recyclerview', ':module_slide_recyclerview', ':module_sound_send_button', ':module_auto_scrollview'

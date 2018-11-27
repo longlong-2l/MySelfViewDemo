@@ -10,7 +10,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common_base" />
-            <option value="$PROJECT_DIR$/module_input_password" />
+            <option value="$PROJECT_DIR$/module_auto_scrollview" />
+            <option value="$PROJECT_DIR$/module_refresh_recyclerview" />
+            <option value="$PROJECT_DIR$/module_slide_recyclerview" />
+            <option value="$PROJECT_DIR$/module_sound_send_button" />
+            <option value="$PROJECT_DIR$/module_wave" />
             <option value="$PROJECT_DIR$/module_wave_water" />
           </set>
         </option>

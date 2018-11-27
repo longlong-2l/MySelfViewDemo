@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MySelfViewDemo</string>
+    <string name="other_one">其他一\n密码输入、圆形图片、聊天图片、聚焦动画</string>
 </resources>

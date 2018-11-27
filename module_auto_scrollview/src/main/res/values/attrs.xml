@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--轮播图-->
+    <declare-styleable name="AutoIndicatorScrollViewPager">
+        <attr name="hasIndicator" format="boolean" />
+        <attr name="viewpager_change_speed" format="integer" />
+        <attr name="indicator_radius" format="dimension|reference" />
+        <attr name="indicator_space" format="dimension|reference" />
+        <attr name="indicator_normal_color" format="color|reference" />
+        <attr name="indicator_checked_color" format="color|reference" />
+    </declare-styleable>
+
+</resources>

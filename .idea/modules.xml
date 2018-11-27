@@ -5,7 +5,11 @@
       <module fileurl="file://$PROJECT_DIR$/MySelfViewDemo.iml" filepath="$PROJECT_DIR$/MySelfViewDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common_base/common_base.iml" filepath="$PROJECT_DIR$/common_base/common_base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/module_input_password/module_input_password.iml" filepath="$PROJECT_DIR$/module_input_password/module_input_password.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_auto_scrollview/module_auto_scrollview.iml" filepath="$PROJECT_DIR$/module_auto_scrollview/module_auto_scrollview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_refresh_recyclerview/module_refresh_recyclerview.iml" filepath="$PROJECT_DIR$/module_refresh_recyclerview/module_refresh_recyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_slide_recyclerview/module_slide_recyclerview.iml" filepath="$PROJECT_DIR$/module_slide_recyclerview/module_slide_recyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_sound_send_button/soundsendbutton.iml" filepath="$PROJECT_DIR$/module_sound_send_button/soundsendbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_wave/module_wave.iml" filepath="$PROJECT_DIR$/module_wave/module_wave.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_wave_water/module_wave_water.iml" filepath="$PROJECT_DIR$/module_wave_water/module_wave_water.iml" />
     </modules>
   </component>
