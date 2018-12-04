@@ -1,6 +1,8 @@
 package com.study.longl.myselfviewdemo;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        StatusBarUtil.setStatusColor(MainActivity.this, false, false, R.color.default_color_one);
         setContentView(R.layout.activity_main);
-
         /*对焦控件代码*/
 //        mFocusView = findViewById(R.id.fv_my);
 //        RelativeLayout ll_root = findViewById(R.id.ll_root);
