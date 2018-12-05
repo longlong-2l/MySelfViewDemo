@@ -67,7 +67,6 @@
     <!--android:layout_alignParentTop="true" />-->
 
 
-
     <Button
         android:id="@+id/bt_water_wave"
         android:layout_width="wrap_content"
@@ -116,4 +115,11 @@
         android:layout_marginStart="30dp"
         android:layout_toEndOf="@id/bt_water_wave"
         android:text="@string/other_one" />
+
+    <Button
+        android:id="@+id/bt_audio_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt_water_view"
+        android:text="流程进度展示" />
 </RelativeLayout>

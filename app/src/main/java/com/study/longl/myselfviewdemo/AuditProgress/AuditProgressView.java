@@ -1,4 +1,4 @@
-package com.study.longl.myselfviewdemo.Views;
+package com.study.longl.myselfviewdemo.AuditProgress;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -22,6 +22,8 @@ import static com.study.longl.myselfviewdemo.utils.ScreenUtil.dp2px;
 /**
  * Created by longl on 2018/12/4.
  * 自定义流程进度
+ * 可扩展性强，易用性差，原理简单
+ * 合适学习
  */
 
 public class AuditProgressView extends View {
@@ -89,14 +91,18 @@ public class AuditProgressView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
         if (mIsCurrentComplete) {
             audio_drawBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.audit_complete);
         } else {
             audio_drawBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.audit_uncomplete);
         }
+    }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
         int width = getWidth();
         int height = getHeight();
 

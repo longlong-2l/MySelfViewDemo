@@ -1,7 +1,9 @@
-package com.study.longl.myselfviewdemo;
+package com.study.longl.myselfviewdemo.AuditProgress;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.study.longl.myselfviewdemo.R;
 
 public class AuditProgressActivity extends AppCompatActivity {
 

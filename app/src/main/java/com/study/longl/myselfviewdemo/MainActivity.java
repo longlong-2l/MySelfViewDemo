@@ -12,6 +12,7 @@ import com.study.longl.module_refresh_recyclerview.RefreshRecyclerViewMainActivi
 import com.study.longl.module_slide_recyclerview.SlideMainActivity;
 import com.study.longl.module_wave.ui.WaveMainActivity;
 import com.study.longl.module_wave_water.WaveWaterMainActivity;
+import com.study.longl.myselfviewdemo.AuditProgress.AuditProgressActivity;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
 import com.study.longl.soundsendbutton.SoundSendMainActivity;
 
@@ -110,6 +111,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, AutoScrollViewMainActivity.class));
+            }
+        });
+
+        findViewById(R.id.bt_audio_progress).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AuditProgressActivity.class));
             }
         });
     }
