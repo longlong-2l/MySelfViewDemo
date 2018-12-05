@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -27,14 +28,14 @@ public class AuditProgressViewTwo extends View {
 
     private int allCount;           //所有进度数目，比如5个
     private int currentPosition;    //当前进度所在位置，比如在第3个进度
-    private int lineWidth = 100;
     private int lineCompleteColor;
 
     private TextPaint textPaint;    //写文字的画笔
     private Paint bitmapPaint;      //画图片的画笔
     private Paint linePaint;        //画线的画笔
 
-    private Rect textWidths;        //承接文字宽度的矩形
+    private Rect textRect;        //承接文字宽度的矩形
+    private RectF viewRectF;        //整个view的矩形
 
     private int completeColor = Color.parseColor("#FF0000");      //完成颜色，主要用于文字
     private int notCompleteColor = Color.parseColor("#757575");   //未完成颜色，主要用于文字
@@ -72,12 +73,14 @@ public class AuditProgressViewTwo extends View {
             throw new RuntimeException(getClass().getName() + "资源数组图标个数不能小于全部流程个数");
         }
 
-        textWidths = new Rect();
+        textRect = new Rect();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        viewRectF = new RectF(getPaddingLeft(), getPaddingTop(), getRight() - getLeft() - getPaddingRight(), getBottom() - getTop() - getPaddingBottom());
+
         textPaint = new TextPaint();
         textPaint.setStyle(Paint.Style.FILL);
         textPaint.setAntiAlias(true);
@@ -92,7 +95,7 @@ public class AuditProgressViewTwo extends View {
         linePaint.setColor(completeColor);
         linePaint.setAntiAlias(true);
         linePaint.setStyle(Paint.Style.FILL);
-        linePaint.setStrokeWidth(1.5f);
+        linePaint.setStrokeWidth(2.0f);
 
         completeBitmap.clear();
         notCompleteBitmap.clear();
@@ -108,21 +111,39 @@ public class AuditProgressViewTwo extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         for (int i = 0; i < allCount; i++) {
-            textPaint.getTextBounds(text[i], 0, text[i].length(), textWidths);
-            int wid = (textWidths.width() / 2 - completeBitmap.get(i).getWidth() / 2);
+            float smallRectWidth = viewRectF.width() / allCount;
             if (i < currentPosition) {
-                canvas.drawBitmap(completeBitmap.get(i), i * 2 * 80 + wid, 20, bitmapPaint);
+                int bitmapWidthHalf = completeBitmap.get(i).getWidth() / 2;
+                canvas.drawBitmap(completeBitmap.get(i), (i * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf, getPaddingTop(), bitmapPaint);
                 linePaint.setColor(lineCompleteColor);
                 textPaint.setColor(completeColor);
+                if (i < allCount - 1) {
+                    //画线,之所以写在这里是为了防止每个item图标大小不一样的情况
+                    float startX = (i * smallRectWidth + smallRectWidth / 2) + bitmapWidthHalf;
+                    float stopX = ((i + 1) * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf;
+                    float startY = completeBitmap.get(i).getHeight() / 2 + getPaddingTop();
+                    canvas.drawLine(startX, startY, stopX, startY, linePaint);
+                }
             } else {
-                canvas.drawBitmap(notCompleteBitmap.get(i), i * 2 * 80 + wid, 20, bitmapPaint);
+                int bitmapWidthHalf = notCompleteBitmap.get(i).getWidth() / 2;
+                canvas.drawBitmap(notCompleteBitmap.get(i), (i * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf, getPaddingTop(), bitmapPaint);
                 linePaint.setColor(notCompleteColor);
                 textPaint.setColor(notCompleteColor);
+                if (i < allCount - 1) {
+                    //画线,之所以写在这里是为了防止每个item图标大小不一样的情况
+                    float startX = (i * smallRectWidth + smallRectWidth / 2) + bitmapWidthHalf;
+                    float stopX = ((i + 1) * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf;
+                    float startY = notCompleteBitmap.get(i).getHeight() / 2 + getPaddingTop();
+                    canvas.drawLine(startX, startY, stopX, startY, linePaint);
+                }
             }
-            canvas.drawText(text[i], i * 2 * 80, completeBitmap.get(i).getHeight() + 70, textPaint);
-            if (i > 0) {
-                canvas.drawLine((completeBitmap.get(i).getWidth() + lineWidth) * i - lineWidth, 20 + completeBitmap.get(i).getHeight() / 2, (completeBitmap.get(i).getWidth() + lineWidth) * i, 20 + completeBitmap.get(i).getHeight() / 2, linePaint);
-            }
+
+            //写文字部分
+            textPaint.getTextBounds(text[i], 0, text[i].length(), textRect);
+            int textWidthHalf = textRect.width() / 2;
+            float x = (i * smallRectWidth + smallRectWidth / 2) - textWidthHalf;
+            float y = completeBitmap.get(i).getHeight() + getPaddingTop() + 70;
+            canvas.drawText(text[i], x, y, textPaint);
         }
     }
 

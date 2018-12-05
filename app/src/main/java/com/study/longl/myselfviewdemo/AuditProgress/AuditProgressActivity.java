@@ -9,7 +9,7 @@ public class AuditProgressActivity extends AppCompatActivity {
 
     private int notCompleteImageArray[] = {R.drawable.audit_uncomplete, R.drawable.audit_uncomplete, R.drawable.audit_uncomplete, R.drawable.audit_uncomplete, R.drawable.audit_uncomplete};
     private int completeImageArray[] = {R.drawable.audit_complete, R.drawable.audit_complete, R.drawable.audit_complete, R.drawable.audit_complete, R.drawable.audit_complete};
-    private String text[] = {"帆风顺", "风顺", "一帆风顺", "风顺", "风顺"};
+    private String text[] = {"一帆风顺", "一帆风顺", "风顺", "帆风顺", "风顺"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

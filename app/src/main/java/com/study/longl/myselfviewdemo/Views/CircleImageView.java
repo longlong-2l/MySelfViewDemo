@@ -151,7 +151,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         Matrix matrix = new Matrix();
         matrix.set(null);
         scaleX = (mBitmapRect.right - mBitmapRect.left) / bitmap.getWidth();  //width =345   1
-        scaleY = (mBitmapRect.bottom - mBitmapRect.top) / bitmap.getHeight(); //height=568  0
+        scaleY = (mBitmapRect.bottom - mBitmapRect.top) / bitmap.getHeight(); //height=568   0
         dx = mBitmapRect.left;
         dy = mBitmapRect.top;
         matrix.setScale(scaleX, scaleY); //缩放
