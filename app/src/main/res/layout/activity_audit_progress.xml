@@ -6,34 +6,14 @@
     android:layout_height="match_parent"
     tools:context="com.study.longl.myselfviewdemo.AuditProgress.AuditProgressActivity">
 
-    <com.study.longl.myselfviewdemo.AuditProgress.AuditProgressView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:apv_isCurrentComplete="true"
-        app:apv_isFirstStep="true"
-        app:apv_isLastStep="false"
-        app:apv_isNextComplete="true"
-        app:apv_stepCount="3"
-        app:apv_text="第一步" />
-
-    <com.study.longl.myselfviewdemo.AuditProgress.AuditProgressView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:apv_isCurrentComplete="true"
-        app:apv_isFirstStep="false"
-        app:apv_isLastStep="false"
-        app:apv_isNextComplete="false"
-        app:apv_stepCount="3"
-        app:apv_text="第二步" />
-
-    <com.study.longl.myselfviewdemo.AuditProgress.AuditProgressView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:apv_isCurrentComplete="false"
-        app:apv_isFirstStep="false"
-        app:apv_isLastStep="true"
-        app:apv_isNextComplete="false"
-        app:apv_stepCount="3"
-        app:apv_text="第三步" />
+    <com.study.longl.myselfviewdemo.AuditProgress.AuditProgressViewTwo
+        android:id="@+id/apvt_my"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:all_count="5"
+        app:complete_color="@color/colorAccent"
+        app:current_position="4"
+        app:line_complete_color="@color/colorAccent"
+        app:not_complete_color="@color/gray" />
 
 </LinearLayout>

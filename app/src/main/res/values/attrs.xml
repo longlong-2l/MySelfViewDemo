@@ -65,4 +65,19 @@
         <!--步骤提示 -->
         <attr name="apv_text" format="string|reference" />
     </declare-styleable>
+
+
+    <!--流程进度2-->
+    <declare-styleable name="AuditProgressViewTwo">
+        <!--所有步骤数，从1开始而不是0 -->
+        <attr name="all_count" format="integer" />
+        <!--现在完成了几个步骤，从1开始，不是0 -->
+        <attr name="current_position" format="integer" />
+        <!--完成步骤的文字颜色 -->
+        <attr name="complete_color" format="reference|color" />
+        <!--未完成步骤的文字颜色 -->
+        <attr name="not_complete_color" format="reference|color" />
+        <!--连线颜色 -->
+        <attr name="line_complete_color" format="reference|color" />
+    </declare-styleable>
 </resources>
