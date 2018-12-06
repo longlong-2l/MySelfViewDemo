@@ -43,9 +43,9 @@ public class AuditProgressViewTwo extends View {
     private ArrayList<Bitmap> completeBitmap = new ArrayList<>();        //完成的Bitmap
     private ArrayList<Bitmap> notCompleteBitmap = new ArrayList<>();     //未完成的Bitmap
 
-    private int notCompleteImageArray[] = {R.drawable.audit_uncomplete, R.drawable.audit_uncomplete, R.drawable.audit_uncomplete, R.drawable.audit_uncomplete, R.drawable.audit_uncomplete};
-    private int completeImageArray[] = {R.drawable.audit_complete, R.drawable.audit_complete, R.drawable.audit_complete, R.drawable.audit_complete, R.drawable.audit_complete};
-    private String text[] = {"步骤一", "步骤二", "步骤三", "步骤四", "步骤五"};
+    private int notCompleteImageArray[];
+    private int completeImageArray[];
+    private String text[];
 
     public AuditProgressViewTwo(Context context) {
         this(context, null);
@@ -68,11 +68,11 @@ public class AuditProgressViewTwo extends View {
         notCompleteColor = typedArray.getInteger(R.styleable.AuditProgressViewTwo_not_complete_color, Color.GRAY);
         lineCompleteColor = typedArray.getInteger(R.styleable.AuditProgressViewTwo_line_complete_color, Color.BLACK);
         typedArray.recycle();
-
-        if (allCount > completeImageArray.length) {
-            throw new RuntimeException(getClass().getName() + "资源数组图标个数不能小于全部流程个数");
+        if (completeImageArray != null) {
+            if (allCount > completeImageArray.length) {
+                throw new RuntimeException(getClass().getName() + "资源数组图标个数不能小于全部流程个数");
+            }
         }
-
         textRect = new Rect();
     }
 
@@ -99,51 +99,55 @@ public class AuditProgressViewTwo extends View {
 
         completeBitmap.clear();
         notCompleteBitmap.clear();
-        for (int i = 0; i < completeImageArray.length; i++) {
-            completeBitmap.add(i, BitmapFactory.decodeResource(getResources(), completeImageArray[i]));
-        }
-        for (int i = 0; i < notCompleteImageArray.length; i++) {
-            notCompleteBitmap.add(i, BitmapFactory.decodeResource(getResources(), notCompleteImageArray[i]));
+        if (completeImageArray != null && notCompleteImageArray != null) {
+            for (int i = 0; i < completeImageArray.length; i++) {
+                completeBitmap.add(i, BitmapFactory.decodeResource(getResources(), completeImageArray[i]));
+            }
+            for (int i = 0; i < notCompleteImageArray.length; i++) {
+                notCompleteBitmap.add(i, BitmapFactory.decodeResource(getResources(), notCompleteImageArray[i]));
+            }
         }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (int i = 0; i < allCount; i++) {
-            float smallRectWidth = viewRectF.width() / allCount;
-            if (i < currentPosition) {
-                int bitmapWidthHalf = completeBitmap.get(i).getWidth() / 2;
-                canvas.drawBitmap(completeBitmap.get(i), (i * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf, getPaddingTop(), bitmapPaint);
-                linePaint.setColor(lineCompleteColor);
-                textPaint.setColor(completeColor);
-                if (i < allCount - 1) {
-                    //画线,之所以写在这里是为了防止每个item图标大小不一样的情况
-                    float startX = (i * smallRectWidth + smallRectWidth / 2) + bitmapWidthHalf;
-                    float stopX = ((i + 1) * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf;
-                    float startY = completeBitmap.get(i).getHeight() / 2 + getPaddingTop();
-                    canvas.drawLine(startX, startY, stopX, startY, linePaint);
+        if (completeImageArray != null && notCompleteImageArray != null) {
+            for (int i = 0; i < allCount; i++) {
+                float smallRectWidth = viewRectF.width() / allCount;
+                int bitmapWidthHalf;
+                float startY = 10f;
+                if (i < currentPosition) {
+                    bitmapWidthHalf = completeBitmap.get(i).getWidth() / 2;
+                    canvas.drawBitmap(completeBitmap.get(i), (i * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf, getPaddingTop(), bitmapPaint);
+                    linePaint.setColor(lineCompleteColor);
+                    textPaint.setColor(completeColor);
+                    if (i < allCount - 1) {
+                        startY = notCompleteBitmap.get(i).getHeight() / 2 + getPaddingTop();
+                    }
+                } else {
+                    bitmapWidthHalf = notCompleteBitmap.get(i).getWidth() / 2;
+                    canvas.drawBitmap(notCompleteBitmap.get(i), (i * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf, getPaddingTop(), bitmapPaint);
+                    linePaint.setColor(notCompleteColor);
+                    textPaint.setColor(notCompleteColor);
+                    if (i < allCount - 1) {
+                        startY = notCompleteBitmap.get(i).getHeight() / 2 + getPaddingTop();
+                    }
                 }
-            } else {
-                int bitmapWidthHalf = notCompleteBitmap.get(i).getWidth() / 2;
-                canvas.drawBitmap(notCompleteBitmap.get(i), (i * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf, getPaddingTop(), bitmapPaint);
-                linePaint.setColor(notCompleteColor);
-                textPaint.setColor(notCompleteColor);
-                if (i < allCount - 1) {
-                    //画线,之所以写在这里是为了防止每个item图标大小不一样的情况
-                    float startX = (i * smallRectWidth + smallRectWidth / 2) + bitmapWidthHalf;
-                    float stopX = ((i + 1) * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf;
-                    float startY = notCompleteBitmap.get(i).getHeight() / 2 + getPaddingTop();
-                    canvas.drawLine(startX, startY, stopX, startY, linePaint);
-                }
-            }
 
-            //写文字部分
-            textPaint.getTextBounds(text[i], 0, text[i].length(), textRect);
-            int textWidthHalf = textRect.width() / 2;
-            float x = (i * smallRectWidth + smallRectWidth / 2) - textWidthHalf;
-            float y = completeBitmap.get(i).getHeight() + getPaddingTop() + 70;
-            canvas.drawText(text[i], x, y, textPaint);
+                if (i < allCount - 1) {
+                    float startX = (i * smallRectWidth + smallRectWidth / 2) + bitmapWidthHalf;
+                    float stopX = ((i + 1) * smallRectWidth + smallRectWidth / 2) - bitmapWidthHalf;
+                    canvas.drawLine(startX, startY, stopX, startY, linePaint);
+                }
+
+                //写文字部分
+                textPaint.getTextBounds(text[i], 0, text[i].length(), textRect);
+                int textWidthHalf = textRect.width() / 2;
+                float x = (i * smallRectWidth + smallRectWidth / 2) - textWidthHalf;
+                float y = completeBitmap.get(i).getHeight() + getPaddingTop() + 70;
+                canvas.drawText(text[i], x, y, textPaint);
+            }
         }
     }
 
@@ -172,5 +176,18 @@ public class AuditProgressViewTwo extends View {
      */
     public void setTextSource(String[] textSource) {
         this.text = textSource;
+    }
+
+    public void setAllCount(int allCount) {
+        this.allCount = allCount;
+    }
+
+    public void setCurrentPosition(int currentPosition) {
+        this.currentPosition = currentPosition;
+        invalidate();
+    }
+
+    public void build() {
+        invalidate();
     }
 }

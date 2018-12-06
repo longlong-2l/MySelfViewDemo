@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
+    android:orientation="vertical"
     tools:context="com.study.longl.myselfviewdemo.AuditProgress.AuditProgressActivity">
 
     <com.study.longl.myselfviewdemo.AuditProgress.AuditProgressViewTwo
@@ -14,8 +15,14 @@
         android:paddingTop="20dp"
         app:all_count="5"
         app:complete_color="@color/colorAccent"
-        app:current_position="4"
+        app:current_position="1"
         app:line_complete_color="@color/white"
         app:not_complete_color="@color/gray" />
+
+    <Button
+        android:id="@+id/bt_progree_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="进度加1" />
 
 </LinearLayout>
