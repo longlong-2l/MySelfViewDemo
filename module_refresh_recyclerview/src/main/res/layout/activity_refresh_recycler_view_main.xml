@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.study.longl.module_refresh_recyclerview.RefreshRecyclerViewMainActivity">
 
-    <com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2
+    <com.study.longl.module_refresh_recyclerview.RefreshRecyclerView.MyRefreshRecyclerView2
     android:id="@+id/refreshable_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
@@ -14,6 +14,6 @@
     android:id="@+id/list_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
-    </com.study.longl.myselfviewdemo.RefreshRecyclerView.MyRefreshRecyclerView2>
+    </com.study.longl.module_refresh_recyclerview.RefreshRecyclerView.MyRefreshRecyclerView2>
 
 </RelativeLayout>
