@@ -14,6 +14,7 @@ import com.study.longl.module_wave.ui.WaveMainActivity;
 import com.study.longl.module_wave_water.WaveWaterMainActivity;
 import com.study.longl.myselfviewdemo.AuditProgress.AuditProgressActivity;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
+import com.study.longl.myselfviewdemo.otherView.OtherOneActivity;
 import com.study.longl.soundsendbutton.SoundSendMainActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -114,10 +115,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+         /*流程进度展示*/
         findViewById(R.id.bt_audio_progress).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, AuditProgressActivity.class));
+            }
+        });
+
+         /*其他一*/
+        findViewById(R.id.bt_other_one).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OtherOneActivity.class));
             }
         });
     }

@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AuditProgress.AuditProgressActivity"></activity>
+        <activity android:name=".AuditProgress.AuditProgressActivity" />
+        <activity android:name=".otherView.OtherOneActivity"></activity>
     </application>
 
 </manifest>
