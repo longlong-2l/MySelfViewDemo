@@ -25,12 +25,7 @@
     <!--聊天页图片展示-->
     <!--<com.study.longl.myselfviewdemo.Views.MyIMImageView-->
     <!--android:id="@+id/miv_test"-->
-    <!--android:layou<com.study.longl.myselfviewdemo.Views.PayPasswordView-->
-    <!--android:id="@+id/ppv_my"-->
-    <!--android:layout_width="300dp"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginTop="15dp" />t_width="150dp"-->
+    <!--android:layout_width="150dp"-->
     <!--android:layout_height="200dp"-->
     <!--android:layout_centerHorizontal="true"-->
     <!--android:layout_marginTop="50dp"-->
@@ -122,4 +117,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/bt_water_view"
         android:text="流程进度展示" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:text="切换文本"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.study.longl.myselfviewdemo.Views.ByteBeatView.ByteBeatTextView
+        android:id="@+id/etv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#000"
+        android:layout_above="@id/btn"
+        android:gravity="center_horizontal"
+        android:paddingTop="8dp"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+
 </RelativeLayout>

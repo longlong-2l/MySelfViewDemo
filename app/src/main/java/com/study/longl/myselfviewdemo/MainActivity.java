@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.study.longl.module_auto_scrollview.AutoScrollViewMainActivity;
 import com.study.longl.module_refresh_recyclerview.RefreshRecyclerViewMainActivity;
@@ -13,6 +14,7 @@ import com.study.longl.module_slide_recyclerview.SlideMainActivity;
 import com.study.longl.module_wave.ui.WaveMainActivity;
 import com.study.longl.module_wave_water.WaveWaterMainActivity;
 import com.study.longl.myselfviewdemo.AuditProgress.AuditProgressActivity;
+import com.study.longl.myselfviewdemo.Views.ByteBeatView.ByteBeatTextView;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
 import com.study.longl.myselfviewdemo.otherView.OtherOneActivity;
 import com.study.longl.soundsendbutton.SoundSendMainActivity;
@@ -20,6 +22,9 @@ import com.study.longl.soundsendbutton.SoundSendMainActivity;
 public class MainActivity extends AppCompatActivity {
     private MyFocusView mFocusView;
     String[] items = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"};
+
+    ByteBeatTextView byteBeatTextView;
+    private int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,5 +135,38 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, OtherOneActivity.class));
             }
         });
+
+        byteBeatTextView = findViewById(R.id.etv);
+        Button button = findViewById(R.id.btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index >= (sentences.length - 1)) {
+                    index = 0;
+                }
+                byteBeatTextView.animateText(sentences[index++]);
+            }
+        });
+        byteBeatTextView.animateText("hello world");
     }
+
+    private String[] sentences = {
+            "aaa",
+            "dddadaddddd",
+            "cc",
+            "dfdfcgcgfcgccggg",
+            "grounded",
+            "in tactile reality",
+            "inspired",
+            "study of paper and ink",
+            "understand",
+            "new affordances",
+            "The fundamentals of light, surface, and movement are key to conveying how objects move",
+            "interact",
+            "divides space",
+            "fundamentals",
+            "欢迎关注文淑",
+            "文淑博客",
+            "Android"
+    };
 }

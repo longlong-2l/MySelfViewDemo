@@ -37,6 +37,7 @@ dependencies {
     api rootProject.ext.dependencies["runner"]
     api rootProject.ext.dependencies["espresso"]
     api rootProject.ext.dependencies["support_annotations"]
+    api rootProject.ext.dependencies["glide"]
 
     //路由配置
     annotationProcessor rootProject.ext.dependencies["arouter_compiler"]

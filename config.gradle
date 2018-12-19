@@ -21,6 +21,7 @@ ext {
             arouterApiVersion       : "1.4.0",
             arouterCompilerVersion  : "1.2.1",
             arouterannotationVersion: "1.0.4",
+            glide                   : "3.7.0"
     ]
 
     dependencies = ["appcompat_v7"       : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
@@ -34,5 +35,6 @@ ext {
                     "arouter_api"        : "com.alibaba:arouter-api:${version["arouterApiVersion"]}",
                     "arouter_compiler"   : "com.alibaba:arouter-compiler:${version["arouterCompilerVersion"]}",
                     "arouter_annotation" : "com.alibaba:arouter-annotation:${version["arouterannotationVersion"]}",
+                    "glide"              : "com.github.bumptech.glide:glide:${version["glide"]}",
     ]
 }

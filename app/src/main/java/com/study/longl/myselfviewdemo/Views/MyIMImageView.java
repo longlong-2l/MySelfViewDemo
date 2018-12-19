@@ -79,7 +79,7 @@ public class MyIMImageView extends android.support.v7.widget.AppCompatImageView 
     protected void onDraw(Canvas canvas) {
         if (mBitmapPaint != null) {
             canvas.drawPath(mPath, mBitmapPaint);
-            drawShadowAndProgress(canvas, mBitmapRectF);  //画阴影和进度
+//            drawShadowAndProgress(canvas, mBitmapRectF);  //画阴影和进度
         }
     }
 

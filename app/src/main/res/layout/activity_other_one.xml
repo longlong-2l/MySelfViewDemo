@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.study.longl.myselfviewdemo.otherView.OtherOneActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.study.longl.myselfviewdemo.Views.MyIMImageView
+        android:id="@+id/miv_test"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/image2"
+        app:direction="right"
+        app:showShadow="true"
+        app:showText="true" />
+
+    <com.study.longl.myselfviewdemo.Views.BubbleImageView
+        android:id="@+id/id_biv_chatPic"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:minHeight="150dp"
+        android:minWidth="100dp"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:bubble_angle="10dp"
+        app:bubble_arrowHeight="10dp"
+        app:bubble_arrowLocation="right"
+        app:bubble_arrowOffset="-5dp"
+        app:bubble_arrowTop="20dp"
+        app:bubble_arrowWidth="8dp"
+        app:bubble_showShadow="true"
+        app:bubble_showText="false" />
+
+    <com.study.longl.myselfviewdemo.Views.BubbleVideoView
+        android:id="@+id/id_bvv_chatVideo"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:minHeight="150dp"
+        android:minWidth="100dp"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:bubble_angle1="10dp"
+        app:bubble_arrowHeight1="10dp"
+        app:bubble_arrowLocation1="left"
+        app:bubble_arrowOffset1="-5dp"
+        app:bubble_arrowTop1="20dp"
+        app:bubble_arrowWidth1="8dp"
+        app:bubble_showShadow1="true"
+        app:bubble_showText1="true" />
+
+</LinearLayout>
