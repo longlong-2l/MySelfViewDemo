@@ -1,8 +1,6 @@
 package com.study.longl.myselfviewdemo;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +12,7 @@ import com.study.longl.module_slide_recyclerview.SlideMainActivity;
 import com.study.longl.module_wave.ui.WaveMainActivity;
 import com.study.longl.module_wave_water.WaveWaterMainActivity;
 import com.study.longl.myselfviewdemo.AuditProgress.AuditProgressActivity;
+import com.study.longl.myselfviewdemo.Views.BitmapBomb.BitmapBombActivity;
 import com.study.longl.myselfviewdemo.Views.ByteBeatView.ByteBeatTextView;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
 import com.study.longl.myselfviewdemo.otherView.OtherOneActivity;
@@ -128,6 +127,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*bitmap爆炸*/
+        findViewById(R.id.bt_bitmap_bomb).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BitmapBombActivity.class));
+            }
+        });
+
          /*其他一*/
         findViewById(R.id.bt_other_one).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,8 +172,8 @@ public class MainActivity extends AppCompatActivity {
             "interact",
             "divides space",
             "fundamentals",
-            "欢迎关注文淑",
-            "文淑博客",
+            "欢迎关注Surpass",
+            "SurpassLi博客",
             "Android"
     };
 }

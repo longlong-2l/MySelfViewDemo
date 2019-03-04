@@ -119,11 +119,18 @@
         android:text="流程进度展示" />
 
     <Button
+        android:id="@+id/bt_bitmap_bomb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt_audio_progress"
+        android:text="bitmap爆炸" />
+
+    <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
         android:text="切换文本"
         android:textColor="#fff"
         android:textSize="16sp"
@@ -134,11 +141,12 @@
         android:id="@+id/etv"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#000"
         android:layout_above="@id/btn"
+        android:background="#000"
         android:gravity="center_horizontal"
         android:paddingTop="8dp"
         android:textColor="#fff"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
+
 
 </RelativeLayout>

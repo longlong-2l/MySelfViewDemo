@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.study.longl.module_auto_scrollview">
 
-    <application
-        android:theme="@style/AppTheme">
-        <activity android:name=".AutoScrollViewMainActivity">
-        </activity>
+    <application android:theme="@style/AppTheme">
+        <activity android:name=".AutoScrollViewMainActivity"/>
     </application>
 
 </manifest>

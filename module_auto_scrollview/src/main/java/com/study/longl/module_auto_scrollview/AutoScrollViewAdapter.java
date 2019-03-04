@@ -45,7 +45,7 @@ public class AutoScrollViewAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        Log.i(TAG, "isViewFromObject: ");
+//        Log.i(TAG, "isViewFromObject: ");
         return view == object;
     }
 
@@ -58,7 +58,7 @@ public class AutoScrollViewAdapter extends PagerAdapter {
 //                //添加点击事件
 //            }
 //        });
-        Log.i(TAG, "instantiateItem: ");
+//        Log.i(TAG, "instantiateItem: ");
         return arrayList.get(position);
     }
 

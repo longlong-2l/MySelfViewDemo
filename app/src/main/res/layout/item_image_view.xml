@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:scaleType="fitXY"
-    android:src="@drawable/image1">
+    android:src="@drawable/image1"
+    android:contentDescription="TODO">
 
 </ImageView>

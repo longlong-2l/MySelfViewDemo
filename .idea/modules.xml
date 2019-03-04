@@ -11,7 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/module_sound_send_button/module_sound_send_button.iml" filepath="$PROJECT_DIR$/module_sound_send_button/module_sound_send_button.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_wave/module_wave.iml" filepath="$PROJECT_DIR$/module_wave/module_wave.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_wave_water/module_wave_water.iml" filepath="$PROJECT_DIR$/module_wave_water/module_wave_water.iml" />
-      <module fileurl="file://E:\Android_Native_WorkPace\MySelfViewDemo\module_sound_send_button\soundsendbutton.iml" filepath="E:\Android_Native_WorkPace\MySelfViewDemo\module_sound_send_button\soundsendbutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_sound_send_button/soundsendbutton.iml" filepath="$PROJECT_DIR$/module_sound_send_button/soundsendbutton.iml" />
     </modules>
   </component>
 </project>
