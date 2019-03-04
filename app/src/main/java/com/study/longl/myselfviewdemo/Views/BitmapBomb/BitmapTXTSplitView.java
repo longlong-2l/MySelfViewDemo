@@ -76,7 +76,6 @@ public class BitmapTXTSplitView extends View {
             }
         });
 
-
         //加载图片数组
         mBitmaps = new Bitmap[]{
                 BitmapFactory.decodeResource(getResources(), R.mipmap.thank_you),
@@ -103,8 +102,6 @@ public class BitmapTXTSplitView extends View {
 //        Paint paint = new Paint();
 //        //将按照原作图片绘制在新图
 //        canvas.drawBitmap(bitmap, 0, 0, paint);
-
-
     }
 
     @Override

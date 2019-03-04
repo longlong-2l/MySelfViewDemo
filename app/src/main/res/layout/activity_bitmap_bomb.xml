@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".Views.BitmapBomb.BitmapBombActivity">
 
-    <com.study.longl.myselfviewdemo.Views.BitmapBomb.BitmapTXTSplitView
+    <com.study.longl.myselfviewdemo.Views.BitmapBomb.MyBombView
         android:id="@+id/text_bomb_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
