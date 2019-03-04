@@ -12,33 +12,32 @@ import android.graphics.Picture;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.study.longl.myselfviewdemo.R;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyBombView extends View {
-
-    private Point mCoo = new Point(300, 400);//坐标系
+/**
+ * @author lilong
+ * @since 2019/3/4
+ */
+public class BitmapTXTSplitView extends View {
+    private Point mCoo = new Point(100, 300);//坐标系
     private Picture mCooPicture;//坐标系canvas元件
     private Picture mGridPicture;//网格canvas元件
     private Paint mHelpPint;//辅助画笔
 
 
     private Paint mPaint;//主画笔
-    private Path mPath;//主路径
+    private Path mPath;  //主路径
     private Bitmap mBitmap;
     private int[][] mColArr;
 
-    private int d = 3;//复刻的像素边长
+
     private List<Ball> mBalls = new ArrayList<>();//粒子集合
     private ValueAnimator mAnimator;//时间流
     private long mRunTime;//粒子运动时刻
@@ -46,11 +45,11 @@ public class MyBombView extends View {
     private int curBitmapIndex = 0;//当前图片索引
     private Bitmap[] mBitmaps;//图片数组
 
-    public MyBombView(Context context) {
+    public BitmapTXTSplitView(Context context) {
         this(context, null);
     }
 
-    public MyBombView(Context context, @Nullable AttributeSet attrs) {
+    public BitmapTXTSplitView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();//初始化
     }
@@ -72,60 +71,55 @@ public class MyBombView extends View {
         mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                MyBombView.this.updateBall();   //更新小球位置
-                MyBombView.this.invalidate();
+                updateBall();//更新小球位置
+                invalidate();
             }
         });
 
+
         //加载图片数组
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-//        saveBitmap(Environment.getExternalStorageDirectory() + "/testC/toly/px_2x2.png", bitmap)
-        initBall(mBitmap);
-    }
+        mBitmaps = new Bitmap[]{
+                BitmapFactory.decodeResource(getResources(), R.mipmap.thank_you),
+                BitmapFactory.decodeResource(getResources(), R.mipmap.bye),
+                BitmapFactory.decodeResource(getResources(), R.mipmap.go_on)
+        };
 
-    /**
-     * 将颜色从int 拆分成argb,并打印出来
-     *
-     * @param msg
-     * @param color
-     */
-    private void printColor(String msg, int color) {
-        int a = Color.alpha(color);
-        int r = Color.red(color);
-        int g = Color.green(color);
-        int b = Color.blue(color);
-//        L.d(msg + "----a:" + a + ", r:" + r + ", g:" + g + ", b:" + b + L.l());
-    }
+        bitmap2Ball(mBitmaps[curBitmapIndex]);
 
+//        int color_0_0 = bitmap.getPixel(0, 0);
+//        mPaint.setColor(color_0_0);
+
+//        mColArr = new int[bitmap.getWidth()][bitmap.getHeight()];
+
+//        mBalls = initBall(bitmap.getWidth(), bitmap.getHeight());
+
+
+//        Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+
+
+//        //将newBitmap加入画板
+//        Canvas canvas = new Canvas(newBitmap);
+//        //准备画笔
+//        Paint paint = new Paint();
+//        //将按照原作图片绘制在新图
+//        canvas.drawBitmap(bitmap, 0, 0, paint);
+
+
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
         canvas.translate(mCoo.x, mCoo.y);
-//        drawBitmapWithStar(canvas);
-
         for (Ball ball : mBalls) {
             mPaint.setColor(ball.color);
-            canvas.drawRect(ball.x - d / 2, ball.y - d / 2, ball.x + d / 2, ball.y + d / 2, mPaint);
-
-//            canvas.drawCircle(ball.x, ball.y, d / 2, mPaint);
+            canvas.drawCircle(ball.x, ball.y, 2, mPaint);
         }
+
+        //TODO ----drawSomething
         canvas.restore();
 //        HelpDraw.draw(canvas, mGridPicture, mCooPicture);
-    }
-
-    private void drawBitmapWithStar(Canvas canvas) {
-        for (int i = 0; i < mBalls.size(); i++) {
-            canvas.save();
-            int line = i % mBitmap.getHeight();
-            int row = i / mBitmap.getWidth();
-            canvas.translate(row * 2 * d, line * 2 * d);
-            mPaint.setColor(mBalls.get(i).color);
-//            canvas.drawPath(CommonPath.nStarPath(5, d, d / 2), mPaint);
-            canvas.restore();
-
-        }
     }
 
     @Override
@@ -152,6 +146,27 @@ public class MyBombView extends View {
             if (System.currentTimeMillis() - mRunTime > 2000) {
                 mBalls.remove(i);
             }
+
+            if (mBalls.isEmpty()) {//表示本张已结束
+                if (curBitmapIndex == 2) {
+                    mAnimator.end();
+                    return;
+                }
+                curBitmapIndex++;
+                bitmap2Ball(mBitmaps[curBitmapIndex]);
+
+                isOK = true;
+
+                invalidate();
+                mRunTime = System.currentTimeMillis();
+                mAnimator.pause();
+            }
+
+            if (isOK) {//如果本张结束---返回掉
+                isOK = false;
+                return;
+            }
+
             ball.x += ball.vX;
             ball.y += ball.vY;
             ball.vY += ball.aY;
@@ -159,67 +174,21 @@ public class MyBombView extends View {
         }
     }
 
-    /**
-     * 根像素初始化粒子
-     *
-     * @param bitmap
-     * @return
-     */
-    private void initBall(Bitmap bitmap) {
-        for (int i = 0; i < bitmap.getWidth(); i++) {
-            for (int j = 0; j < bitmap.getHeight(); j++) {
-                Ball ball = new Ball();  //产生粒子-每个粒子拥有随机的一些属性信息
+
+    private List<Ball> initBall(int w, int h) {
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                Ball ball = new Ball();
+                ball.vX = (float) (Math.pow(-1, Math.ceil(Math.random() * 1000)) * 20 * Math.random());
+                ball.vY = rangeInt(-15, 35);
+                ball.aY = 0.98f;
                 ball.x = i * 4;
                 ball.y = j * 4;
-                ball.vX = (float) (Math.pow(-1, Math.ceil(Math.random() * 1001)) * 20 * Math.random());
-                ball.vY = rangeInt(-15, 35);
-                ball.aX = 0.98f;
-                ball.color = bitmap.getPixel(i, j);
-                ball.born = System.currentTimeMillis();
+                ball.color = mColArr[i][j];
                 mBalls.add(ball);
             }
         }
-    }
-
-    /**
-     * 配凑黑白颜色
-     *
-     * @param a
-     * @param r
-     * @param g
-     * @param b
-     * @return
-     */
-    private int blackAndWhite(int a, int r, int g, int b) {
-        //拼凑出新的颜色
-        int grey = (int) (r * 0.3 + g * 0.59 + b * 0.11);
-        if (grey > 255 / 2) {
-            grey = 255;
-        } else {
-            grey = 0;
-        }
-        return Color.argb(a, grey, grey, grey);
-    }
-
-    /**
-     * 配凑灰颜色
-     *
-     * @param a
-     * @param r
-     * @param g
-     * @param b
-     * @return
-     */
-    private int grey(int a, int r, int g, int b) {
-        //拼凑出新的颜色
-        int grey = (int) (r * 0.3 + g * 0.59 + b * 0.11);
-        return Color.argb(a, grey, grey, grey);
-    }
-
-    //
-    private int reverse(int a, int r, int g, int b) {
-        //拼凑出新的颜色
-        return Color.argb(a, 255 - r, 255 - g, 255 - b);
+        return mBalls;
     }
 
     /**
@@ -238,7 +207,7 @@ public class MyBombView extends View {
     /**
      * 将一个图片粒子化
      *
-     * @param bitmap
+     * @param bitmap bitmap
      */
     public void bitmap2Ball(Bitmap bitmap) {
         for (int i = 0; i < bitmap.getWidth(); i++) {
@@ -257,39 +226,5 @@ public class MyBombView extends View {
                 }
             }
         }
-    }
-
-    /**
-     * 保存bitmap到本地
-     *
-     * @param path    路径
-     * @param mBitmap 图片
-     * @return 路径
-     */
-    public static String saveBitmap(String path, Bitmap mBitmap) {
-
-        File file = new File(path);
-        if (file.isDirectory()) {
-            return null;
-        }
-
-        if (!file.exists()) {
-            file.getParentFile().mkdirs();
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            fos.flush();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return file.getAbsolutePath();
     }
 }
