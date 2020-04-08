@@ -126,6 +126,13 @@
         android:text="bitmap爆炸" />
 
     <Button
+        android:id="@+id/bt_radius_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt_bitmap_bomb"
+        android:text="圆角TextView" />
+
+    <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="48dp"

@@ -16,6 +16,7 @@ import com.study.longl.myselfviewdemo.Views.BitmapBomb.BitmapBombActivity;
 import com.study.longl.myselfviewdemo.Views.ByteBeatView.ByteBeatTextView;
 import com.study.longl.myselfviewdemo.Views.MyFocusView;
 import com.study.longl.myselfviewdemo.otherView.OtherOneActivity;
+import com.study.longl.myselfviewdemo.ui.activity.RadiusTextViewActivity;
 import com.study.longl.soundsendbutton.SoundSendMainActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -140,6 +141,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, OtherOneActivity.class));
+            }
+        });
+
+        findViewById(R.id.bt_radius_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RadiusTextViewActivity.class));
             }
         });
 

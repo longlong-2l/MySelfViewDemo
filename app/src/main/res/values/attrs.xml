@@ -108,4 +108,25 @@
         <attr name="bubble_showText1" format="boolean" />
         <attr name="bubble_showShadow1" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="radiusTextView">
+        <attr name="rv_backgroundColor" format="reference|color"/>
+        <attr name="rv_backgroundPressedColor" format="reference|color"/>
+        <attr name="rv_backgroundEnabledColor" format="reference|color"/>
+        <attr name="rv_radius" format="dimension|reference"/>
+        <attr name="rv_strokeWidth" format="dimension|reference"/>
+        <attr name="rv_strokeColor" format="reference|color"/>
+        <attr name="rv_strokePressedColor" format="reference|color"/>
+        <attr name="rv_strokeEnabledColor" format="reference|color"/>
+        <attr name="rv_textColor" format="reference|color"/>
+        <attr name="rv_textPressedColor" format="reference|color"/>
+        <attr name="rv_textEnabledColor" format="reference|color"/>
+        <attr name="rv_radiusHalfHeightEnable" format="boolean"/>
+        <attr name="rv_widthHeightEqualEnable" format="boolean"/>
+        <attr name="rv_topLeftRadius" format="dimension|reference"/>
+        <attr name="rv_topRightRadius" format="dimension|reference"/>
+        <attr name="rv_bottomLeftRadius" format="dimension|reference"/>
+        <attr name="rv_bottomRightRadius" format="dimension|reference"/>
+        <attr name="rv_rippleEnable" />
+    </declare-styleable>
 </resources>

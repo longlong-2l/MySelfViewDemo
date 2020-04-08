@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <com.study.longl.myselfviewdemo.Views.radiusview.RadiusTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="测试一号"
+        app:rv_backgroundColor="#FFFFD600"
+        app:rv_bottomRightRadius="15dp"
+        app:rv_topLeftRadius="15dp" />
+
+    <com.study.longl.myselfviewdemo.Views.radiusview.RadiusTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:text="测试二号"
+        app:rv_backgroundColor="#FFFFD600"
+        app:rv_radius="15dp" />
+
+    <com.study.longl.myselfviewdemo.Views.radiusview.RadiusTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:text="测试三号"
+        app:rv_strokeWidth = "1dp"
+        app:rv_strokeColor = "#000000"
+        app:rv_backgroundColor="#FFFFD600"
+        app:rv_radius="15dp" />
+
+</LinearLayout>
