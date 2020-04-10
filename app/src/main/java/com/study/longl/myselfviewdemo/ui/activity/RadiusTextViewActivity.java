@@ -3,6 +3,7 @@ package com.study.longl.myselfviewdemo.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.study.longl.myselfviewdemo.R;
 
@@ -17,5 +18,7 @@ public class RadiusTextViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_radius_view);
+        TextView view = findViewById(R.id.tv_test);
+//        view.setBackground();
     }
 }

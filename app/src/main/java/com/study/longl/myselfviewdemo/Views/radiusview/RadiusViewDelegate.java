@@ -72,7 +72,7 @@ public class RadiusViewDelegate {
         this.topRightRadius = ta.getDimensionPixelSize(R.styleable.radiusTextView_rv_topRightRadius, 0);
         this.bottomLeftRadius = ta.getDimensionPixelSize(R.styleable.radiusTextView_rv_bottomLeftRadius, 0);
         this.bottomRightRadius = ta.getDimensionPixelSize(R.styleable.radiusTextView_rv_bottomRightRadius, 0);
-        this.isRippleEnable = ta.getBoolean(R.styleable.radiusTextView_rv_rippleEnable, true);
+        this.isRippleEnable = ta.getBoolean(R.styleable.radiusTextView_rv_rippleEnable, false);
         ta.recycle();
     }
 

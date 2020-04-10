@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:padding="5dp"
+        android:textColor="@color/white"
         android:text="测试二号"
         app:rv_backgroundColor="#FFFFD600"
         app:rv_radius="15dp" />
@@ -34,5 +35,11 @@
         app:rv_strokeColor = "#000000"
         app:rv_backgroundColor="#FFFFD600"
         app:rv_radius="15dp" />
+
+    <TextView
+        android:id="@+id/tv_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/point_check"/>
 
 </LinearLayout>
